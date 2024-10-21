@@ -1,5 +1,3 @@
-
-
 export default function Navbar () {
   return (
     <nav className="relative w-full h-96 bg-cover" style={{backgroundImage: `url('/src/assets/bg-img-1.avif')` }}>

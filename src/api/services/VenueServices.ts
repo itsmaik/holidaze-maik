@@ -1,9 +1,9 @@
 import axiosInstance from "../config/axiosInstance";
-import { VenueInterface } from "../../types/Venue";
+import { TVenueList } from "../../types/Venue";
 
 export const VenueServices = {
-  fetchVenues: async function (): Promise<VenueInterface[]> {
-    const response = await axiosInstance.get<{ data: VenueInterface[] }>(
+  fetchVenues: async function (): Promise<TVenueList[]> {
+    const response = await axiosInstance.get<{ data: TVenueList[] }>(
       "/holidaze/venues"
     );
     return response.data.data;
@@ -11,6 +11,6 @@ export const VenueServices = {
 
   fetchVenueById: async function (id: string) {
     const response = await axiosInstance.get(`/holidaze/venues${id}`);
-    return response.data;
+    return response.data.data;
   },
 };

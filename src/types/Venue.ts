@@ -1,10 +1,10 @@
 
-export interface Media {
+type Media = {
   url: string;
   alt: string;
 }
 
-export interface Location {
+export type TLocation = {
   address: string;
   city: string;
   zip: string;
@@ -14,7 +14,7 @@ export interface Location {
   lng: 0;
 }
 
-export interface VenueInterface {
+export type TVenue = {
   id: string;
   name: string;
   description: string;
@@ -26,4 +26,11 @@ export interface VenueInterface {
   updated: string;
   meta: object;
   location: Location;
+}
+
+export type TVenueList = {
+  id: string;
+  name: string;
+  description: string;
+  media: Media[];
 }
