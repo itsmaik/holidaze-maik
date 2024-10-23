@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { VenueServices } from "../../api/services/VenueServices";
-import { TVenueList } from "../../types/Venue";
-import VenueListTemplate from "./VenueListTemplate";
+import { VenueServices } from "@api/services/VenueServices";
+import { TVenueList } from "src/types/VenueTypes";
+import VenueListTemplate from "../templates/VenueListTemplate";
 
 export default function VenueList() {
   const {

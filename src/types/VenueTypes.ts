@@ -1,8 +1,8 @@
 
-type Media = {
+export type Media = {
   url: string;
   alt: string;
-}
+};
 
 export type TLocation = {
   address: string;
@@ -12,7 +12,7 @@ export type TLocation = {
   continent: string;
   lat: 0;
   lng: 0;
-}
+};
 
 export type TVenue = {
   id: string;
@@ -26,11 +26,11 @@ export type TVenue = {
   updated: string;
   meta: object;
   location: Location;
-}
+};
 
 export type TVenueList = {
   id: string;
   name: string;
   description: string;
   media: Media[];
-}
+};

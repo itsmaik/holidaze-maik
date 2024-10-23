@@ -1,5 +1,5 @@
-import axiosInstance from "../config/axiosInstance";
-import { TVenueList } from "../../types/Venue";
+import axiosInstance from "@api/config/axiosInstance";
+import { TVenueList } from "../../types/VenueTypes";
 
 export const VenueServices = {
   fetchVenues: async function (): Promise<TVenueList[]> {
