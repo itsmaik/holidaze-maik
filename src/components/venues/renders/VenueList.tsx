@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { VenueServices } from "@api/services/VenueServices";
+import { fetchVenues } from "@api/services/VenueServices";
 import { TVenueList } from "src/types/VenueTypes";
 import VenueListTemplate from "../templates/VenueListTemplate";
 
@@ -10,7 +10,7 @@ export default function VenueList() {
     isLoading,
   } = useQuery<TVenueList[]>({
     queryKey: ["venues"],
-    queryFn: VenueServices.fetchVenues,
+    queryFn: fetchVenues,
   });
 
   if (isLoading) return <p>Loading...</p>;
