@@ -1,9 +1,10 @@
-import { TVenueList } from "../../../types/VenueTypes";
-interface VenueListTemplateProps {
+import { TVenueList } from "src/types/VenueTypes";
+
+type TVenueListProps = {
   venue: TVenueList;
 }
 
-export default function VenueListTemplate({ venue }: VenueListTemplateProps) {
+export default function VenueListTemplate({ venue }: TVenueListProps) {
   return (
     <div className="bg-stone-50 max-w-sm">
       <div className="relative">
