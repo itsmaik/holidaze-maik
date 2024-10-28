@@ -9,7 +9,7 @@ type TLoginFormInput = {
 }
 
 export default function Login () {
-  const {login} = useAuth();
+  const { login } = useAuth();
   const [ error, setError ] = useState<string | null>(null);
 
   const handleLogin = async (data: TLoginFormInput)  => {
@@ -17,9 +17,10 @@ export default function Login () {
       const response = await loginUser(data.email, data.password);
       login(response.user, response.token)
       setError(null);
+      if (response) return console.log('Login successful', response);
     } catch (err) {
-      if (err)
-        setError("Invalid credentials, please try again.");
+      if (err instanceof Error)
+        setError("You have entered an invalid email or password");
     }
   };
 

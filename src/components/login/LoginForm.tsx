@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 
-
 type TLoginFormInput = {
   email: string;
   password: string;
@@ -12,13 +11,13 @@ type TLoginFormProps = {
 }
 
 export default function LoginForm ({onSubmit, apiError}: TLoginFormProps) {
-  const { register, handleSubmit, formState: {errors} } =useForm<TLoginFormInput>();
+  const { register, handleSubmit, formState: {errors} } = useForm<TLoginFormInput>();
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <input
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <div className='mb-4'>
+          <input className='outline w-full p-2 outline-gray-300 rounded-md focus:outline-blue-300'
             type="email"
             {...register('email', {
               required: 'Email is required',
@@ -27,13 +26,13 @@ export default function LoginForm ({onSubmit, apiError}: TLoginFormProps) {
                 message: 'Enter a valid email address',
               },
             })}
-            placeholder="Email"
+            placeholder="example@stud.noroff.no"
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
         </div>
 
-        <div>
-          <input
+        <div className='mb-4'>
+          <input className='outline w-full p-2 outline-gray-300 rounded-md focus:outline-blue-300'
             type="password"
             {...register('password', {
               required: 'Password is required',
@@ -44,12 +43,12 @@ export default function LoginForm ({onSubmit, apiError}: TLoginFormProps) {
             })}
             placeholder="Password"
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
         </div>
 
-        <button type="submit">Login</button>
-        {apiError && <p>{apiError}</p>}
+        <button type="submit" className='bg-black text-white text-xl p-2 w-full rounded-md font-semibold mb-2'>Login</button>
+        {apiError && <p className='text-red-500 text-center'>{apiError}</p>}
       </form>
-    </div>
-  )
+    </>
+  );
 };

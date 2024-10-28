@@ -19,7 +19,7 @@ export default function Navbar () {
           <Button onClick={() => setRegisterOpen(true)}> Register </Button>
         </div>
 
-        <Modal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} title="Login" >
+        <Modal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} title="Login with an existing account" >
           <Login />
         </Modal>
 
