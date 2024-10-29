@@ -14,7 +14,7 @@ export default function VenueListCard({ venue }: TVenueListProps) {
           src={venue.media.length > 0 ? venue.media[0].url : placeHolderImage}
           alt={venue.media.length > 0 ? venue.media[0].alt || venue.name : venue.name}
           onError={(e) => (e.target.src = placeHolderImage)}
-          className="w-full min-h-72 max-h-72 object-cover rounded-md"
+          className="w-80 sm:w-96 h-72 object-cover rounded-md"
         />
 
         {venue.location && (
