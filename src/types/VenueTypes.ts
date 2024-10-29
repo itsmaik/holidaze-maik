@@ -33,4 +33,5 @@ export type TVenueList = {
   name: string;
   description: string;
   media: Media[];
+  location: TLocation;
 };
