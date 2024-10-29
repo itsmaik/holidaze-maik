@@ -17,7 +17,7 @@ export default function LoginForm ({onSubmit, apiError}: TLoginFormProps) {
     <>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className='mb-4'>
-          <input className='outline w-full p-2 outline-gray-300 rounded-md focus:outline-blue-300'
+          <input className='input'
             type="email"
             {...register('email', {
               required: 'Email is required',
@@ -32,13 +32,13 @@ export default function LoginForm ({onSubmit, apiError}: TLoginFormProps) {
         </div>
 
         <div className='mb-4'>
-          <input className='outline w-full p-2 outline-gray-300 rounded-md focus:outline-blue-300'
+          <input className='input'
             type="password"
             {...register('password', {
               required: 'Password is required',
               minLength: {
-                value: 6,
-                message: 'Password must be at least 6 characters',
+                value: 8,
+                message: 'Password must be at least 8 characters',
               },
             })}
             placeholder="Password"
