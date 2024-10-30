@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useAuth } from "@hooks/useAuth";
 import { base_api_url } from "./config";
 import { api_key } from "./config";
 
@@ -17,6 +18,17 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+axiosInstance.interceptors.response.use(
+  (response) => response, 
+  (error) => {
+    if (error.response?.status === 401) {
+      useAuth().logout()
+      window.location.href = '/login';
+    }
     return Promise.reject(error);
   }
 );
