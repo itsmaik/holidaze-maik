@@ -1,6 +1,6 @@
 import Button from "@components/globals/Button"
 import Modal from "@components/globals/Modal";
-import Login from "@components/login/Login";
+import Login from "@components/auth/login/Login";
 import { useState } from "react"
 
 export default function Navbar () {
