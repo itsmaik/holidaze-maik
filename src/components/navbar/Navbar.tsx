@@ -2,6 +2,7 @@ import Button from "@components/globals/Button"
 import Modal from "@components/globals/Modal";
 import Login from "@components/auth/login/Login";
 import { useState } from "react"
+import Register from "@components/auth/register/Register";
 
 export default function Navbar () {
   const [isLoginOpen, setLoginOpen] = useState(false);
@@ -20,6 +21,10 @@ export default function Navbar () {
 
         <Modal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} title="Login with an existing account" >
           <Login />
+        </Modal>
+
+        <Modal isOpen={isRegisterOpen} onClose={() => setRegisterOpen(false)} title="Register a new user account" >
+          <Register />
         </Modal>
 
       </div>
