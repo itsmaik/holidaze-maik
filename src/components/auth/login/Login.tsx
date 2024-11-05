@@ -2,11 +2,9 @@ import { useState } from "react";
 import { useAuth } from "@hooks/useAuth";
 import { loginUser } from "@api/services/AuthServices";
 import LoginForm from "./LoginForm";
+import toast from "react-hot-toast";
+import { TLoginFormInput } from "src/types/loginTypes"
 
-type TLoginFormInput = {
-  email: string;
-  password: string;
-}
 
 export default function Login () {
   const { login } = useAuth();
@@ -17,7 +15,7 @@ export default function Login () {
       const response = await loginUser(data.email, data.password);
       login(response.user, response.token)
       setError(null);
-      if (response) return console.log('Login successful', response);
+      if (response) return toast.success("Login Successful");
     } catch (err) {
       if (err instanceof Error)
         setError("You have entered an invalid email or password");
