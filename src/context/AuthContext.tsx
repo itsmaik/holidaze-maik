@@ -1,4 +1,3 @@
-// src/context/AuthContext.tsx
 import React, { createContext, useState } from 'react';
 
 type TAuthContext = {
@@ -7,10 +6,13 @@ type TAuthContext = {
   login: (user: string, token: string) => void;
   logout: () => void;
 }
+type TAuthProvider = {
+  children: React.ReactNode
+}
 
 export const AuthContext = createContext<TAuthContext | undefined>(undefined);
 
-export default function AuthProvider ({ children }): React.ReactNode {
+export default function AuthProvider ({ children }: TAuthProvider) {
   const [user, setUser] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
 

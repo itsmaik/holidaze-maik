@@ -1,9 +1,5 @@
 import { useForm } from 'react-hook-form';
-
-type TLoginFormInput = {
-  email: string;
-  password: string;
-}
+import { TLoginFormInput } from "src/types/loginTypes"
 
 type TLoginFormProps = {
   onSubmit: (data: TLoginFormInput) => void;
@@ -19,6 +15,7 @@ export default function LoginForm ({onSubmit, apiError}: TLoginFormProps) {
         <div className='mb-4'>
           <input className='input'
             type="email"
+            id="email"
             {...register('email', {
               required: 'Email is required',
               pattern: {
@@ -34,6 +31,7 @@ export default function LoginForm ({onSubmit, apiError}: TLoginFormProps) {
         <div className='mb-4'>
           <input className='input'
             type="password"
+            id='password'
             {...register('password', {
               required: 'Password is required',
               minLength: {
