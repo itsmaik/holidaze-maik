@@ -24,6 +24,7 @@ export default function RegisterForm({
     <>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className='mb-4'>
+          <label htmlFor="name">Name</label>
           <input
             className='input'
             type='text'
@@ -35,6 +36,7 @@ export default function RegisterForm({
         </div>
 
         <div className='mb-4'>
+          <label htmlFor="email">Email</label>
           <input
             className='input'
             type='email'
@@ -54,6 +56,7 @@ export default function RegisterForm({
         </div>
 
         <div className='mb-4'>
+          <label htmlFor="password">Password</label>
           <input
             className='input'
             type='password'

@@ -17,6 +17,7 @@ export default function LoginForm({ onSubmit, apiError }: TLoginFormProps) {
     <>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className='mb-4'>
+          <label htmlFor="name">Name</label>
           <input
             className='input'
             type='email'
@@ -36,6 +37,7 @@ export default function LoginForm({ onSubmit, apiError }: TLoginFormProps) {
         </div>
 
         <div className='mb-4'>
+          <label htmlFor="password">Password</label>
           <input
             className='input'
             type='password'
