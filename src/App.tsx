@@ -5,7 +5,7 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Login from "@components/auth/login/Login";
 import SingleVenue from "@pages/SingleVenues";
-import SearchResults from "@components/searchBar/SearchResults";
+import SearchResults from "@components/searchbar/SearchResults";
 import "react-calendar/dist/Calendar.css";
 
 function App() {
@@ -15,8 +15,8 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='/login' element={<Login />} />
-          <Route path="/:id" element={<SingleVenue />} />
-          <Route path="/search-results" element={<SearchResults />} />
+          <Route path='/:id' element={<SingleVenue />} />
+          <Route path='/search-results' element={<SearchResults />} />
           <Route
             path='/profile'
             element={<ProtectedRoute>{/* <Profile /> */}</ProtectedRoute>}

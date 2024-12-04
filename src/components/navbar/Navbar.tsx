@@ -5,7 +5,7 @@ import Button from "@components/globals/Button";
 import Modal from "@components/globals/Modal";
 import Login from "@components/auth/login/Login";
 import Register from "@components/auth/register/Register";
-import SearchBarForm from "../searchBar/SearchBarForm";
+import SearchBarForm from "../searchbar/SearchBarForm";
 
 export default function Navbar() {
   const [isLoginOpen, setLoginOpen] = useState(false);
