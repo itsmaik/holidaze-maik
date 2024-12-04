@@ -1,4 +1,3 @@
-
 export type Media = {
   url: string;
   alt: string;
@@ -34,4 +33,5 @@ export type TVenueList = {
   description: string;
   media: Media[];
   location: TLocation;
+  price: number;
 };
