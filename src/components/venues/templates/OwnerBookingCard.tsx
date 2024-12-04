@@ -32,7 +32,7 @@ export default function OwnerBookingCard({ price, bookings }: Props) {
             </thead>
             <tbody>
               {bookings?.map((booking) => (
-                <tr key={booking.venueId + 1} className='bg-white border-b'>
+                <tr key={booking.id} className='bg-white border-b'>
                   <th
                     scope='row'
                     className='py-4 font-medium text-gray-900 whitespace-nowrap'
@@ -54,7 +54,7 @@ export default function OwnerBookingCard({ price, bookings }: Props) {
         <Button type='button' className='max-w-32 w-full'>
           Edit
         </Button>
-        <Button type='button' className='bg-red-500 text-white max-w-32 w-full'>
+        <Button type='button' className='bg-red-50 max-w-32 w-full'>
           Delete
         </Button>
       </div>

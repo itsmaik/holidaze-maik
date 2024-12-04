@@ -1,22 +1,22 @@
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 import ListedBy from "../templates/ListedBy";
 import VenueInfo from "../templates/VenueInfo";
 import Bookings from "./Bookings";
-import { useQuery } from "@tanstack/react-query";
 import { fetchVenueById } from "@api/services/VenueServices";
-import { useParams } from "react-router-dom";
 import { useIsOwner } from "@hooks/useIsOwner";
 
 export default function VenueById() {
   const { id } = useParams();
   const { data, isLoading } = useQuery({
-    queryKey: ["venue"],
+    queryKey: ["venue", id],
     queryFn: async () => {
       return fetchVenueById(id ?? "");
     },
   });
 
   const imageSrc = data?.media[0].url;
-  const isOwner = useIsOwner(data?.owner.email);
+  const isOwner = useIsOwner(data?.owner?.email || null);
 
   if (isLoading) return <p className='text-2xl'>Loading...</p>;
 
