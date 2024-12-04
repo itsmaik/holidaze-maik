@@ -13,14 +13,14 @@ export default function VenueList() {
     queryKey: ["venues"],
     queryFn: fetchVenues,
   });
-
-  if (isLoading) return <p className="text-2xl">Loading...</p>;
+  
+  if (isLoading) return <p className='text-2xl'>Loading...</p>;
   if (error) {
     return toast.error(`Error fetching venues: ${error.message}`);
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center'>
       {venues?.map((venue) => (
         <VenueListCard key={venue.id} venue={venue} />
       ))}

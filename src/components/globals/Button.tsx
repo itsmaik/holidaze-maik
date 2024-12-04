@@ -1,11 +1,18 @@
+type TButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-type TButtonProps = {
-  onClick: () => void;
-  children: React.ReactNode;
-}
-
-export default function Button ({onClick, children}: TButtonProps) {
+export default function Button({
+  onClick,
+  children,
+  type,
+  className,
+}: TButtonProps) {
   return (
-    <button className="border rounded-md py-2 px-4 font-semibold bg-white  text-black" onClick={onClick}>{children}</button>
-  )
-};
+    <button
+      type={type}
+      className={`border rounded-md py-2 px-4 font-semibold bg-white  text-black ${className}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}

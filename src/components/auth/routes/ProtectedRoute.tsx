@@ -2,16 +2,14 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "@hooks/useAuth";
 
 type TProtectedRouteProps = {
-  children : React.ReactNode;
-}
+  children: React.ReactNode;
+};
 
-export default function ProtectedRoute ({children}: TProtectedRouteProps) {
+export default function ProtectedRoute({ children }: TProtectedRouteProps) {
   const { user } = useAuth();
   const location = useLocation();
 
-  if(!user) return <Navigate to="/login" state={{ from: location }} />
+  if (!user) return <Navigate to='/login' state={{ from: location }} />;
 
-  return (
-    <>{children}</>
-  )
-};
+  return <>{children}</>;
+}
