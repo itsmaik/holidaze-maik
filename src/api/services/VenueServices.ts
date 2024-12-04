@@ -1,5 +1,5 @@
 import axiosInstance from "@api/config/axiosInstance";
-import { TVenueList } from "src/types/venueTypes";
+import type { TVenueList } from "src/types/venueTypes";
 
 export const fetchVenues = async (): Promise<TVenueList[]> => {
   const response = await axiosInstance.get<{ data: TVenueList[] }>(
@@ -9,6 +9,8 @@ export const fetchVenues = async (): Promise<TVenueList[]> => {
 };
 
 export const fetchVenueById = async (id: string) => {
-  const response = await axiosInstance.get(`/holidaze/venues${id}`);
+  const response = await axiosInstance.get(
+    `/holidaze/venues/${id}?_bookings=true&_owner=true`
+  );
   return response.data.data;
 };
