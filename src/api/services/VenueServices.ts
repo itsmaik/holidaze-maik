@@ -3,7 +3,7 @@ import type { TVenueList } from "src/types/venueTypes";
 
 export const fetchVenues = async (): Promise<TVenueList[]> => {
   const response = await axiosInstance.get<{ data: TVenueList[] }>(
-    "/holidaze/venues"
+    `/holidaze/venues?_active=true&sort=created&sortOrder=desc`
   );
   return response.data.data;
 };
