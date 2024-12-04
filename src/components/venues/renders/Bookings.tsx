@@ -7,14 +7,15 @@ type TBookingsProps = {
   price: number;
   bookings: TBooking[];
   isOwner: boolean;
+  venueId: string;
 };
 
-export default function Bookings({ price, bookings, isOwner }: TBookingsProps) {
+export default function Bookings({ price, bookings, isOwner, venueId }: TBookingsProps) {
   const formattedPrice = useCurrencyFormatter(price);
   return (
     <>
       {isOwner ? (
-        <OwnerBookingCard bookings={bookings} price={formattedPrice} />
+        <OwnerBookingCard venueId={venueId} bookings={bookings} price={formattedPrice} />
       ) : (
         <BookingCard price={formattedPrice} />
       )}

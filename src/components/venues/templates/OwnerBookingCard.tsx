@@ -1,13 +1,42 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import type { TBooking } from "src/types/bookingTypes";
 import { format } from "date-fns";
 import Button from "@components/globals/Button";
+import toast from "react-hot-toast";
+import { deleteVenueService } from "@api/services/VenueServices";
 
 type Props = {
   price: string;
   bookings: TBooking[];
+  venueId: string;
 };
 
-export default function OwnerBookingCard({ price, bookings }: Props) {
+export default function OwnerBookingCard({ venueId, price, bookings }: Props) {
+  const id = venueId;
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const {mutate} = useMutation({
+    mutationFn: deleteVenueService,
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ["venues"]})
+      toast.success("Venue deleted successfully")
+      setTimeout(() => {
+        navigate("/")
+      }, 2000)
+    },
+    onError: () => {
+      toast.error("Failed to delete venue. Please try again.");
+    },
+  });
+
+  const handleDelete = () => {
+    if (window.confirm("Are you sure you want to delete this venue?")) {
+      mutate(id);
+    }
+  };
+
   return (
     <div className='rounded-xl shadow-lg bg-white max-w-2xl w-full py-9 sm:px-20 px-10 space-y-7 mx-auto'>
       <strong className='text-gray-700 text-lg block text-left'>
@@ -51,11 +80,11 @@ export default function OwnerBookingCard({ price, bookings }: Props) {
         </div>
       </div>
       <div className='flex items-center justify-end gap-3'>
-        <Button type='button' className='max-w-32 w-full'>
-          Edit
+        <Button type='button' className='w-full'>
+          Edit Venue
         </Button>
-        <Button type='button' className='bg-red-50 max-w-32 w-full'>
-          Delete
+        <Button type='button' onClick={handleDelete} className='bg-red-50 w-full'>
+          Delete Venue
         </Button>
       </div>
     </div>

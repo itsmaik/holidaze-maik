@@ -17,7 +17,6 @@ export default function VenueById() {
   });
 
   const isOwner = useIsOwner(data?.owner?.email || null);
-
   if (isLoading) return <p className='text-2xl'>Loading...</p>;
 
   return (
@@ -50,7 +49,7 @@ export default function VenueById() {
           rating={data.rating}
         />
       </div>
-      <Bookings price={data.price} bookings={data.bookings} isOwner={isOwner} />
+      <Bookings venueId={data.id} price={data.price} bookings={data.bookings} isOwner={isOwner} />
     </>
   );
 }

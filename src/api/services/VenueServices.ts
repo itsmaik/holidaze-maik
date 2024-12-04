@@ -14,3 +14,10 @@ export const fetchVenueById = async (id: string) => {
   );
   return response.data.data;
 };
+
+export const deleteVenueService = async (id: string) => {
+  const response = await axiosInstance.delete(
+    `/holidaze/venues/${id}`
+  );
+  return response.data.data;
+}
