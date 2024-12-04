@@ -1,36 +1,41 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 type TAuthContext = {
   user: string | null;
   token: string | null;
   login: (user: string, token: string) => void;
   logout: () => void;
-}
+  isLoggedIn: boolean;
+};
 type TAuthProvider = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export const AuthContext = createContext<TAuthContext | undefined>(undefined);
 
-export default function AuthProvider ({ children }: TAuthProvider) {
+export default function AuthProvider({ children }: TAuthProvider) {
   const [user, setUser] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const login = (newUser: string, newToken: string) => {
     setUser(newUser);
     setToken(newToken);
-    localStorage.setItem('token', newToken);
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("user", newUser);
+    setIsLoggedIn(true);
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
+    setIsLoggedIn(false)
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
