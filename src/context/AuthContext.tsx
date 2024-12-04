@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 type TAuthContext = {
   user: string | null;
@@ -17,6 +17,17 @@ export default function AuthProvider({ children }: TAuthProvider) {
   const [user, setUser] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
+
+    if (storedUser && storedToken) {
+      setUser(storedUser);
+      setToken(storedToken);
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const login = (newUser: string, newToken: string) => {
     setUser(newUser);
