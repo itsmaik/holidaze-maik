@@ -5,6 +5,7 @@ import VenueInfo from "../templates/VenueInfo";
 import Bookings from "./Bookings";
 import { fetchVenueById } from "@api/services/VenueServices";
 import { useIsOwner } from "@hooks/useIsOwner";
+import placeHolderImage from "src/assets/placeholder-img.avif"
 
 export default function VenueById() {
   const { id } = useParams();
@@ -15,26 +16,31 @@ export default function VenueById() {
     },
   });
 
-  const imageSrc = data?.media[0].url;
   const isOwner = useIsOwner(data?.owner?.email || null);
 
   if (isLoading) return <p className='text-2xl'>Loading...</p>;
 
   return (
     <>
-      <div className='relative flex flex-col items-center lg:items-start lg:flex-row gap-16 w-full mb-28'>
-        <div
-          className='rounded-2xl max-w-full flex p-3 sm:p-9 w-[619px] min-h-[540px] h-full'
-          style={{
-            backgroundImage: `url(${imageSrc})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <ListedBy
-            owner={data.owner.name}
-            price={data.price}
+      <div className='w-full flex flex-col items-center lg:flex-row gap-16 mb-28'>
+        <div className="relative">
+          <img
+          src={data.media.length > 0 ? data.media[0].url : placeHolderImage}
+          alt={
+            data.media.length > 0
+              ? data.media[0].alt || data.name
+              : data.name
+          }
+          onError={(e) => (e.target.src = placeHolderImage)}
+          className='min-w-[30rem] h-80 object-cover rounded-md'
           />
+        
+          <span className="absolute bottom-2 left-2">
+            <ListedBy
+              owner={data.owner.name}
+              price={data.price}
+            />
+          </span>
         </div>
         <VenueInfo
           name={data.name}

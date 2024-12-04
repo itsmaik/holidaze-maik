@@ -63,7 +63,7 @@ export default function SearchBarForm () {
             <input type="text" id="guests" name="guests" value={formValues.guests} onChange={handleChange} aria-label="Number of guests" className="w-full px-4 py-2 focus:outline-none rounded-e-md"/>
           </div>
           <div className="flex flex-col self-end ms-2">
-            <Button type="submit" disabled={!isFormValid} className="bg-transparent text-white"> Search</Button>
+            <Button type="submit" disabled={!isFormValid} className=""> Search</Button>
           </div>
         </form>
       </div>
