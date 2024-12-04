@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@hooks/useAuth";
+import HeroImg from "src/assets/bg-img-1.avif"
 import Button from "@components/globals/Button";
 import Modal from "@components/globals/Modal";
 import Login from "@components/auth/login/Login";
@@ -13,10 +14,12 @@ export default function Navbar() {
 
   const { isLoggedIn, logout } = useAuth();
 
+  const HeroImage = HeroImg;
+
   return (
     <nav
       className='relative w-full h-96 bg-cover'
-      style={{ backgroundImage: `url('/src/assets/bg-img-1.avif')` }}
+      style={{ backgroundImage: `url(${HeroImage})` }}
     >
       <div className='relative z-10 flex items-center justify-between p-6'>
         <Link to={`/`}>
