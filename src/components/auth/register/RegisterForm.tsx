@@ -27,7 +27,7 @@ export default function RegisterForm({
           <input
             className='input'
             type='text'
-            id='email'
+            id='name'
             {...register("name", { required: "Name is required" })}
             placeholder='Name'
           />
@@ -38,6 +38,7 @@ export default function RegisterForm({
           <input
             className='input'
             type='email'
+            id="email"
             {...register("email", {
               required: "Email is required",
               pattern: {
@@ -56,6 +57,7 @@ export default function RegisterForm({
           <input
             className='input'
             type='password'
+            id="password"
             {...register("password", {
               required: "Password is required",
               minLength: {
