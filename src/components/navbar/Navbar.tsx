@@ -7,10 +7,12 @@ import Modal from "@components/globals/Modal";
 import Login from "@components/auth/login/Login";
 import Register from "@components/auth/register/Register";
 import SearchBarForm from "../searchbar/SearchBarForm";
+import CreateVenue from "@components/venues/actions/create-venue/CreateVenue";
 
 export default function Navbar() {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);
+  const [isVenueOpen, setVenueOpen] = useState(false);
 
   const { isLoggedIn, logout } = useAuth();
 
@@ -33,10 +35,7 @@ export default function Navbar() {
           </div>
         ) : (
           <div className='flex space-x-2 text-black'>
-            <Button as={Link} to='/Profile'>
-              {" "}
-              Profile{" "}
-            </Button>
+            <Button onClick={() => setVenueOpen(true)}> Create Venue </Button>
             <Button onClick={logout}> Logout </Button>
           </div>
         )}
@@ -55,6 +54,14 @@ export default function Navbar() {
           title='Register a new user account'
         >
           <Register onSuccess={() => setRegisterOpen(false)} />
+        </Modal>
+
+        <Modal
+          isOpen={isVenueOpen}
+          onClose={() => setVenueOpen(false)}
+          title='Add a new Venue'
+        >
+          <CreateVenue />
         </Modal>
       </div>
 
