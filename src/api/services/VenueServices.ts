@@ -23,7 +23,7 @@ export const deleteVenueService = async (id: string) => {
   return response.data.data;
 }
 
-export const createVenueService = async ({newVenue}: TCreateVenueProps) => {
+export const createVenueService = async (newVenue: TCreateVenueProps) => {
   const response = await axiosInstance.post("/holidaze/venues", newVenue);
   return response.data.data;
 };

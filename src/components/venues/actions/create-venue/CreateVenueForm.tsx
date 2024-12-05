@@ -1,24 +1,19 @@
 import { useForm } from "react-hook-form";
 import { TCreateVenueFormInput } from "src/types/venueFormTypes";
+import useCreateVenue from "./useCreateVenue";
 
-type TCreateVenueFormProps = {
-  onSubmit: (data: TCreateVenueFormInput) => void;
-  newVenue?: TCreateVenueFormInput;
-  apiError?: string | null;
-};
 
-export default function CreateVenueForm({
-  onSubmit,
-  newVenue,
-  apiError,
-}: TCreateVenueFormProps) {
+export default function CreateVenueForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TCreateVenueFormInput>({
-    defaultValues: newVenue,
-  });
+  } = useForm<TCreateVenueFormInput>();
+  const {createVenue} = useCreateVenue();
+
+  const onSubmit = (data) => {
+    createVenue(data)
+  }
 
   return (
     <>
@@ -38,9 +33,8 @@ export default function CreateVenueForm({
 
         <div className='mb-4'>
           <label htmlFor="description">Description <span className='text-red-500'>*</span></label>
-          <input
+          <textarea
             className='input'
-            type='text'
             id="description"
             {...register("description", {
               required: "Description is required",
@@ -49,6 +43,25 @@ export default function CreateVenueForm({
           />
           {errors.description && (
             <p className='text-red-500'>{errors.description.message}</p>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="media">Image URL</label>
+          <input
+            className="input"
+            type="url"
+            id="media"
+            {...register("media.0", {
+              pattern: {
+                value: /^(https?:\/\/[^\s$.?#].[^\s]*)$/i,
+                message: "Please enter a valid URL",
+              },
+            })}
+            placeholder="Enter image URL"
+          />
+          {errors.media?.[0] && (
+            <p className="text-red-500">{errors.media?.[0].message}</p>
           )}
         </div>
 
@@ -188,7 +201,6 @@ export default function CreateVenueForm({
         >
           Add new Venue
         </button>
-        {apiError && <p className='text-red-500 text-center'>{apiError}</p>}
       </form>
     </>
   );

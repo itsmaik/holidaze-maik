@@ -1,7 +1,7 @@
-// type Media = {
-//   url: string;
-//   alt: string;
-// };
+type Media = {
+  url: string;
+  alt: string;
+};
 
 // type Location = {
 //   city: string;
@@ -19,6 +19,7 @@ export type TCreateVenueFormInput = {
   name: string;
   description: string;
   city: string;
+  media: Media[];
   country: string;
   price: number;
   maxGuests: number;

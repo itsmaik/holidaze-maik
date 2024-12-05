@@ -1,10 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import type { TBooking } from "src/types/bookingTypes";
 import { format } from "date-fns";
 import Button from "@components/globals/Button";
-import toast from "react-hot-toast";
-import { deleteVenueService } from "@api/services/VenueServices";
+import useDeleteVenue from "../actions/delete-venue/useDelete";
 
 type Props = {
   price: string;
@@ -14,26 +11,11 @@ type Props = {
 
 export default function OwnerBookingCard({ venueId, price, bookings }: Props) {
   const id = venueId;
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
-
-  const {mutate} = useMutation({
-    mutationFn: deleteVenueService,
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ["venues"]})
-      toast.success("Venue deleted successfully")
-      setTimeout(() => {
-        navigate("/")
-      }, 2000)
-    },
-    onError: () => {
-      toast.error("Failed to delete venue. Please try again.");
-    },
-  });
+  const {deleteVenue} = useDeleteVenue();
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this venue?")) {
-      mutate(id);
+      deleteVenue(id);
     }
   };
 
