@@ -8,7 +8,7 @@ export default function SearchBarForm () {
     location: "",
     checkIn: "",
     checkOut: "",
-    guests: 1,
+    guests: "",
   };
 
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -25,11 +25,12 @@ export default function SearchBarForm () {
 
     const query = new URLSearchParams(
       Object.entries(formValues).reduce((acc, [key, value]) => {
-        if (value) acc[key] = value.toString(); // Add only non-empty values
+        if (value) acc[key] = value.toString();
         return acc;
       }, {} as Record<string, string>)
     ).toString();
 
+    if(query)
     navigate(`/search-results?${query}`);
     setFormValues(initialFormValues);
   }
@@ -48,7 +49,7 @@ export default function SearchBarForm () {
           <div className="flex flex-col w-full md:w-auto">
             <label htmlFor="location" className="text-sm sm:text-base hidden sm:block">Location</label>
             <input type="text" id="location" name="location" value={formValues.location} onChange={handleChange} aria-label="Search location"
-            placeholder="City, country, continent..."  className="w-full px-4 py-2 focus:outline-none rounded-md"/>
+            placeholder="City, country, continent..."  className="w-full px-4 py-2 focus:outline-none rounded-md text-black"/>
           </div>
 
           <div className="flex flex-row w-full gap-2 md:w-auto md:gap-4">
@@ -64,10 +65,11 @@ export default function SearchBarForm () {
 
           <div className="flex flex-col w-full md:w-auto">
             <label htmlFor="guests" className="text-sm sm:text-base hidden sm:block">Guests</label>
-            <input type="text" id="guests" name="guests" value={formValues.guests} onChange={handleChange} aria-label="Number of guests" className="w-full px-4 py-2 focus:outline-none rounded-md"/>
+            <input type="text" id="guests" name="guests" value={formValues.guests} onChange={handleChange} aria-label="Number of guests"
+            placeholder="Number of guests" className="w-full px-4 py-2 focus:outline-none rounded-md text-black"/>
           </div>
           <div className="flex flex-col w-full md:w-auto self-center md:self-end">
-            <Button type="submit" disabled={!isFormValid} className="w-full md:w-auto px-6 py-2 bg-blue-600 bg-opacity-15 text-white rounded-md hover:bg-blue-400"> Search</Button>
+            <Button type="submit" disabled={!isFormValid} className="w-full md:w-auto px-6 py-2 bg-blue-600 bg-opacity-5  text-white rounded-md hover:bg-blue-600"> Search</Button>
           </div>
         </form>
       </div>
