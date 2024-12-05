@@ -108,7 +108,7 @@ export default function BookingCard({ price }: Props) {
               dateFrom: checkInDate?.toISOString() || "",
               dateTo: checkOutDate?.toISOString() || "",
               guests: adults + children,
-              venueId: id ?? "",
+              id: id ?? "",
             })
           }
         >
