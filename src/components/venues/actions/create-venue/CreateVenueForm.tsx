@@ -47,12 +47,13 @@ export default function CreateVenueForm() {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="media">Image URL</label>
+          <label htmlFor="media">Image URL <span className='text-red-500'>*</span></label>
           <input
             className="input"
             type="url"
             id="media"
             {...register("media.0", {
+              required: "Image URL is required",
               pattern: {
                 value: /^(https?:\/\/[^\s$.?#].[^\s]*)$/i,
                 message: "Please enter a valid URL",
