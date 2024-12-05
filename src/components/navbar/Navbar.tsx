@@ -65,7 +65,7 @@ export default function Navbar() {
         </Modal>
       </div>
 
-      <div className='relative z-1 flex items-center justify-center h-80 px-6'>
+      <div className='relative z-1 flex flex-col items-center justify-center h-80 px-6'>
         <SearchBarForm />
       </div>
     </nav>

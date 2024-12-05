@@ -19,12 +19,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 
 body {
   margin: 0;
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
