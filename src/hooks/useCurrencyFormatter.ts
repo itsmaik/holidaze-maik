@@ -13,6 +13,8 @@ export default function useCurrencyFormatter(
       style: "currency",
       currency,
       currencyDisplay: "symbol",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
     });
     return formatter.format(value);
   }, [value, locale, currency]);
