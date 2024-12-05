@@ -1,5 +1,6 @@
 import axiosInstance from "@api/config/axiosInstance";
 import type { TVenueList } from "src/types/venueTypes";
+import type { TCreateVenueProps } from "src/types/venueFormTypes";
 
 export const fetchVenues = async (): Promise<TVenueList[]> => {
   const response = await axiosInstance.get<{ data: TVenueList[] }>(
@@ -21,3 +22,8 @@ export const deleteVenueService = async (id: string) => {
   );
   return response.data.data;
 }
+
+export const createVenueService = async ({newVenue}: TCreateVenueProps) => {
+  const response = await axiosInstance.post("/holidaze/venues", newVenue);
+  return response.data.data;
+};
