@@ -23,23 +23,26 @@ export default function VenueById() {
     <>
       <div className='w-full flex flex-col items-center lg:flex-row gap-16 mb-28'>
         <div className="relative">
-          <img
-          src={data.media.length > 0 ? data.media[0].url : placeHolderImage}
-          alt={
-            data.media.length > 0
-              ? data.media[0].alt || data.name
-              : data.name
-          }
-          onError={(e) => (e.target.src = placeHolderImage)}
-          className='min-w-[30rem] h-80 object-cover rounded-md'
-          />
-        
-          <span className="absolute bottom-2 left-2">
-            <ListedBy
-              owner={data.owner.name}
-              price={data.price}
+          {data && data.media && data.media.length > 0 ? (
+            <img
+              src={data.media[0].url}
+              alt={data.media[0].alt || data.name}
+              onError={(e) => (e.target.src = placeHolderImage)}
+              className="min-w-[30rem] h-80 object-cover rounded-md"
             />
-          </span>
+          ) : (
+            <img
+              src={placeHolderImage}
+              alt={data?.name || "Venue Image"}
+              className="min-w-[30rem] h-80 object-cover rounded-md"
+            />
+          )}
+
+          {data && data.owner && (
+            <span className="absolute bottom-2 left-2">
+              <ListedBy owner={data.owner.name} price={data.price} />
+            </span>
+          )}
         </div>
         <VenueInfo
           name={data.name}
