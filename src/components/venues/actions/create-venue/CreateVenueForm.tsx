@@ -148,7 +148,7 @@ export default function CreateVenueForm() {
           )}
         </div>
 
-        <div className='mb-4 flex flex-row'>
+        <div className='mb-4 flex flex-row justify-around'>
           <label htmlFor="wifi">Wifi</label>
           <input
             className=''
@@ -172,7 +172,7 @@ export default function CreateVenueForm() {
           )}
         </div>
 
-        <div className='mb-4 flex flex-row'>
+        <div className='mb-4 flex flex-row justify-around'>
           <label htmlFor="parking">Parking</label>
           <input
             className=''
@@ -200,7 +200,7 @@ export default function CreateVenueForm() {
           type='submit'
           className='bg-black text-white text-xl p-2 w-full rounded-md font-semibold mb-2'
         >
-          Add new Venue
+          Create new Venue
         </button>
       </form>
     </>

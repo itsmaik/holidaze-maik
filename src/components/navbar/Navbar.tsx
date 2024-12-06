@@ -59,7 +59,7 @@ export default function Navbar() {
         <Modal
           isOpen={isVenueOpen}
           onClose={() => setVenueOpen(false)}
-          title='Add a new Venue'
+          title='Create a new Venue'
         >
           <CreateVenue />
         </Modal>
