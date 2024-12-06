@@ -16,7 +16,7 @@ export default function Login({ onSuccess }: TLoginProps) {
   const handleLogin = async (data: TLoginFormInput) => {
     try {
       const response = await loginUser(data.email, data.password);
-      login(response.email, response.accessToken);
+      login(response.email, response.accessToken, response.name);
       setError(null);
       if (response) return toast.success("Login Successful") && onSuccess();
     } catch (err) {

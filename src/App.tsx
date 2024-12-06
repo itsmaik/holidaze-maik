@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "@components/auth/login/Login";
 import SingleVenue from "@pages/SingleVenues";
 import SearchResults from "@components/searchbar/SearchResults";
+import Profile from "@pages/Profile";
 import "react-calendar/dist/Calendar.css";
 
 function App() {
@@ -19,7 +20,11 @@ function App() {
           <Route path='/search-results' element={<SearchResults />} />
           <Route
             path='/profile'
-            element={<ProtectedRoute>{/* <Profile /> */}</ProtectedRoute>}
+            element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+            }
           />
         </Route>
       </Routes>
