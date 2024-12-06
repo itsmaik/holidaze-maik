@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import heroImg from "src/assets/bg-img-1.avif"
 import Button from "@components/globals/Button";
 import Modal from "@components/globals/Modal";
@@ -13,10 +14,14 @@ export default function Navbar() {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);
   const [isVenueOpen, setVenueOpen] = useState(false);
-
   const { isLoggedIn, logout } = useAuth();
 
+  const navigate = useNavigate();
   const heroImage = heroImg;
+
+  const handleNavigate = () => {
+    navigate("/profile");
+  };
 
   return (
     <nav
@@ -36,6 +41,7 @@ export default function Navbar() {
         ) : (
           <div className='flex space-x-2 text-black'>
             <Button onClick={() => setVenueOpen(true)}> Create Venue </Button>
+            <Button onClick={handleNavigate}> Profile </Button>
             <Button onClick={logout}> Logout </Button>
           </div>
         )}
