@@ -3,6 +3,7 @@ import { fetchVenues } from "@api/services/VenueServices";
 import { TVenueList } from "src/types/venueTypes";
 import VenueListCard from "../templates/VenueListCard";
 import toast from "react-hot-toast";
+import SkeletonLoader from "@components/globals/loaders/SkeletonLoader";
 
 export default function VenueList() {
   const {
@@ -14,7 +15,7 @@ export default function VenueList() {
     queryFn: fetchVenues,
   });
   
-  if (isLoading) return <p className='text-2xl'>Loading...</p>;
+  if (isLoading) return <><SkeletonLoader /></>;
   if (error) {
     return toast.error(`Error fetching venues: ${error.message}`);
   }
