@@ -5,7 +5,7 @@ export type TRegisterFormInput = {
   bio?: string;
   avatar?: { url: string; alt: string };
   banner?: { url: string; alt: string };
-  venueManager?: object;
+  venueManager?: boolean;
 };
 
 export type TRegisterProps = {

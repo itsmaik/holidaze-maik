@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { TRegisterFormInput } from "src/types/registerTypes";
 
 type TRegisterFormProps = {
@@ -12,6 +13,7 @@ export default function RegisterForm({
   userData,
   apiError,
 }: TRegisterFormProps) {
+  const [selectedRole, setSelectedRole] = useState("customer");
   const {
     register,
     handleSubmit,
@@ -19,6 +21,10 @@ export default function RegisterForm({
   } = useForm<TRegisterFormInput>({
     defaultValues: userData,
   });
+
+  const handleRoleChange = (role) => {
+    setSelectedRole(role);
+  };
 
   return (
     <>
@@ -74,6 +80,35 @@ export default function RegisterForm({
             <p className='text-red-500'>{errors.password.message}</p>
           )}
         </div>
+
+        <div className='mb-4 flex flex-col items-center space-y-4'>
+          <label htmlFor="customer" className="flex items-center space-x-2">
+            <input
+              id="customer"
+              checked={selectedRole === "customer"}
+              onChange={() => handleRoleChange("customer")}
+              className='w-5 h-5 accent-blue-600 cursor-pointer'
+              type='checkbox'
+            />
+            <span className="text-gray-700 text-lg">Register as Customer</span>
+          </label>
+
+          <label htmlFor="venueManager" className="flex items-center space-x-2">
+            <input
+              className='w-5 h-5 accent-blue-600 cursor-pointer'
+              type='checkbox'
+              id="venueManager"
+              {...register("venueManager")}
+              checked={selectedRole === "venueManager"}
+              onChange={() => handleRoleChange("venueManager")}
+            />
+            <span className="text-gray-700 text-lg">Register as Venue Manager</span>
+          </label>
+          {errors.venueManager && (
+            <p className='text-red-500'>{errors.venueManager.message}</p>
+          )}
+        </div>
+
 
         <button
           type='submit'
