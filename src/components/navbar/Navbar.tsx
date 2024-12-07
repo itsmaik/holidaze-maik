@@ -9,6 +9,8 @@ import Login from "@components/auth/login/Login";
 import Register from "@components/auth/register/Register";
 import SearchBarForm from "../searchbar/SearchBarForm";
 import CreateVenue from "@components/venues/actions/create-venue/CreateVenue";
+import { CgProfile } from "react-icons/cg";
+import { LuLogOut } from "react-icons/lu";
 
 export default function Navbar() {
   const [isLoginOpen, setLoginOpen] = useState(false);
@@ -37,6 +39,8 @@ export default function Navbar() {
           <div className='flex space-x-2 text-black'>
             <Button onClick={() => setLoginOpen(true)}> Login </Button>
             <Button onClick={() => setRegisterOpen(true)}> Register </Button>
+            <CgProfile className="text-[3rem] text-white" />
+            <LuLogOut className="text-[3rem] text-white" />
           </div>
         ) : (
           <div className='flex space-x-2 text-black'>

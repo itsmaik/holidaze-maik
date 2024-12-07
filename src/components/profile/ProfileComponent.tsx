@@ -15,8 +15,12 @@ export default function ProfileComponent() {
     enabled: !!userName,
   });
   
-
-  console.log(profile);
+  const myBookingsHeaders = {
+    header1: "Name",
+    header2: "Check-In",
+    header3: "Check-out",
+    header4: "Price",
+  }
   
   if (isLoading) return <p>Loading profile...</p>;
   if (error) return <p>Failed to load profile</p>;
@@ -70,7 +74,7 @@ export default function ProfileComponent() {
           <div className="mt-8">
             {/* Tab content here */}
             {activeTab === "venues" && <MyVenuesList venues={profile.venues} />}
-            {activeTab === "bookings" && <MyBookingsList bookings={profile.bookings} />}
+            {activeTab === "bookings" && <MyBookingsList bookings={profile.bookings} headers={myBookingsHeaders} />}
           </div>
         </div>
       </div>
