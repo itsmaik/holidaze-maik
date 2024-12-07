@@ -21,14 +21,14 @@ export default function VenueById() {
 
   return (
     <>
-      <div className='w-full flex flex-col items-center lg:flex-row gap-16 mb-28'>
+      <div className='w-full flex flex-col items-center md:flex-row justify-center gap-16 mb-28'>
         <div className="relative">
           {data && data.media && data.media.length > 0 ? (
             <img
               src={data.media[0].url}
               alt={data.media[0].alt || data.name}
               onError={(e) => (e.target.src = placeHolderImage)}
-              className="min-w-[30rem] h-80 object-cover rounded-md"
+              className="w-full h-80 object-cover rounded-md"
             />
           ) : (
             <img

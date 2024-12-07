@@ -15,7 +15,7 @@ export default function Bookings({ price, bookings, isOwner, venueId }: TBooking
   return (
     <>
       {isOwner ? (
-        <OwnerBookingCard venueId={venueId} bookings={bookings} price={formattedPrice} />
+        <OwnerBookingCard venueId={venueId} bookings={bookings} />
       ) : (
         <BookingCard price={formattedPrice} />
       )}
