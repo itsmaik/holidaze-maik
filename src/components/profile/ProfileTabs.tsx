@@ -1,5 +1,5 @@
 import MyVenuesList from "./MyVenuesList";
-import MyBookingsList from "./MyBookingsList";
+import UserBookingsList from "./UserBookingsList";
 import { ProfileBookingsHeaders } from "@utils/functions/bookingHeaders";
 
 type ProfileTabsProps = {
@@ -31,7 +31,7 @@ export default function ProfileTabs({ activeTab, setActiveTab, isVenueManager, v
       </nav>
       <div className="mt-8">
         {activeTab === "venues" && <MyVenuesList venues={venues} />}
-        {activeTab === "bookings" && <MyBookingsList bookings={bookings} headers={ProfileBookingsHeaders} />}
+        {activeTab === "bookings" && <UserBookingsList bookings={bookings} headers={ProfileBookingsHeaders} />}
       </div>
     </div>
   );
