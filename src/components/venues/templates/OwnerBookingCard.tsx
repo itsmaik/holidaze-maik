@@ -11,12 +11,12 @@ type Props = {
 };
 
 export default function OwnerBookingCard({ venueId, bookings }: Props) {
-  const id = venueId;
+  // const id = venueId;
   const {deleteVenue} = useDeleteVenue();
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this venue?")) {
-      deleteVenue(id);
+      deleteVenue(venueId);
     }
   };
 

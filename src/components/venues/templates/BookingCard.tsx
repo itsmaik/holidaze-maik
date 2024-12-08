@@ -4,14 +4,14 @@ import Modal from "@components/globals/Modal";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import Calendar from "react-calendar";
-import toast from "react-hot-toast";
 import { FaMinus, FaPlus } from "react-icons/fa";
-import { useParams } from "react-router-dom";
 import type { TBooking } from "src/types/bookingTypes";
+import toast from "react-hot-toast";
 
 type ValuePiece = Date | null;
 type Props = {
   price: string;
+  venueId:string;
 };
 
 const BookingAction = ({
@@ -41,16 +41,19 @@ const BookingAction = ({
   </div>
 );
 
-export default function BookingCard({ price }: Props) {
+export default function BookingCard({ price, venueId }: Props ) {
+  console.log(venueId);
+  
+
   const [checkInDate, setCheckInDate] = useState<ValuePiece>(null);
   const [checkOutDate, setCheckOutDate] = useState<ValuePiece>(null);
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [modalOpen, setModalOpen] = useState("");
-  const { id } = useParams();
   const today = new Date();
   const { mutate } = useMutation({
     mutationFn: (data: Partial<TBooking>) => {
+      console.log(data);
       return createBooking(data);
     },
     onSuccess: () => {
@@ -58,6 +61,7 @@ export default function BookingCard({ price }: Props) {
       setCheckOutDate(null);
       setAdults(1);
       setChildren(0);
+      toast.success("You booking was successful")
     },
     onError: (error: any) => {
       console.log(error);
@@ -108,7 +112,7 @@ export default function BookingCard({ price }: Props) {
               dateFrom: checkInDate?.toISOString() || "",
               dateTo: checkOutDate?.toISOString() || "",
               guests: adults + children,
-              id: id ?? "",
+              venueId: venueId ?? "",
             })
           }
         >

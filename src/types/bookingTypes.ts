@@ -2,7 +2,7 @@ export type TBooking = {
   dateFrom: string;
   dateTo: string;
   guests: number;
-  id: string;
+  venueId: string;
   customer: {
     name: string;
   };
