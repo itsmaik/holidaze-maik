@@ -38,7 +38,7 @@ const BookingAction = ({
       {displayValue || (title === "Guests" ? "Add Guests" : "Add Dates")}
     </Button>
     {hasLine && (
-      <div className='w-px h-9 bg-gray-100 absolute -left-6 sm:block hidden' />
+      <div className='w-px h-9 bg-gray-100 text absolute -left-6 sm:block hidden' />
     )}
   </div>
 );

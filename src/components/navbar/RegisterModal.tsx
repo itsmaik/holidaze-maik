@@ -8,7 +8,7 @@ export default function RegisterModal() {
 
   return (
     <>
-      <Button onClick={() => setRegisterOpen(true)} className="btn">
+      <Button onClick={() => setRegisterOpen(true)} className="btn text-white">
         Register
       </Button>
       <Modal

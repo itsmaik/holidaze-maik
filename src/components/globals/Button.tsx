@@ -9,7 +9,7 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`border rounded-md py-2 px-4 font-semibold text-white hover:bg-blue-600 ${className}`}
+      className={`border rounded-md py-2 px-4 font-semibold ${className}`}
       onClick={onClick}
     >
       {children}

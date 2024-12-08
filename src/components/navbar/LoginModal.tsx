@@ -8,7 +8,7 @@ export default function LoginModal() {
 
   return (
     <>
-      <Button onClick={() => setLoginOpen(true)} className="btn">
+      <Button onClick={() => setLoginOpen(true)} className="btn text-white">
         Login
       </Button>
       <Modal
