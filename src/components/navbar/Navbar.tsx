@@ -3,7 +3,7 @@ import LoginModal from "./LoginModal";
 import RegisterModal from "./RegisterModal";
 import ProfileButton from "@components/navbar/ProfileButton";
 import LogoutButton from "@components/navbar/LogoutButton";
-import SearchBarForm from "../searchbar/SearchBarForm";
+import SearchBarForm from "../globals/SearchBarForm";
 import heroImg from "src/assets/bg-img-1.avif";
 import { useAuth } from "@hooks/useAuth";
 
