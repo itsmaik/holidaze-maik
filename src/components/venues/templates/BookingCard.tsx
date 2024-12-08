@@ -7,6 +7,8 @@ import Calendar from "react-calendar";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import type { TBooking } from "src/types/bookingTypes";
 import toast from "react-hot-toast";
+import { useAuth } from "@hooks/useAuth";
+import Login from "@components/auth/login/Login";
 
 type ValuePiece = Date | null;
 type Props = {
@@ -42,18 +44,16 @@ const BookingAction = ({
 );
 
 export default function BookingCard({ price, venueId }: Props ) {
-  console.log(venueId);
-  
-
   const [checkInDate, setCheckInDate] = useState<ValuePiece>(null);
   const [checkOutDate, setCheckOutDate] = useState<ValuePiece>(null);
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [modalOpen, setModalOpen] = useState("");
+  const [isLoginOpen, setLoginOpen] = useState(false);
+  const { isLoggedIn } = useAuth();
   const today = new Date();
   const { mutate } = useMutation({
     mutationFn: (data: Partial<TBooking>) => {
-      console.log(data);
       return createBooking(data);
     },
     onSuccess: () => {
@@ -105,19 +105,24 @@ export default function BookingCard({ price, venueId }: Props ) {
             displayValue={`${adults} adults, ${children} children`}
           />
         </div>
-        <Button
-          className='!bg-gray-700 text-white w-full'
-          onClick={() =>
-            mutate({
-              dateFrom: checkInDate?.toISOString() || "",
-              dateTo: checkOutDate?.toISOString() || "",
-              guests: adults + children,
-              venueId: venueId ?? "",
-            })
-          }
-        >
-          Reserve Now
-        </Button>
+        {isLoggedIn ? ( 
+          <Button
+            className='!bg-gray-700 text-white w-full'
+            onClick={() =>
+              mutate({
+                dateFrom: checkInDate?.toISOString() || "",
+                dateTo: checkOutDate?.toISOString() || "",
+                guests: adults + children,
+                venueId: venueId ?? "",
+              })
+            }
+          >
+            Reserve Now
+          </Button>
+          ) : (
+          <Button className="!bg-gray-700 text-white w-full"
+          onClick={() => setLoginOpen(true)}>Login to proceed</Button>
+        )}
       </div>
       {/* Check-in Modal */}
       <Modal
@@ -205,6 +210,13 @@ export default function BookingCard({ price, venueId }: Props ) {
           </Button>
         </div>
       </Modal>
+      <Modal
+        isOpen={isLoginOpen}
+        onClose={() => setLoginOpen(false)}
+        title='Login with an existing account'
+      >
+        <Login onSuccess={() => setLoginOpen(false)} />
+        </Modal>
     </>
   );
 }
