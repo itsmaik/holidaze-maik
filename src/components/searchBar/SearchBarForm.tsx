@@ -69,7 +69,7 @@ export default function SearchBarForm () {
             placeholder="Number of guests" className="w-full px-4 py-2 focus:outline-none rounded-md text-black"/>
           </div>
           <div className="flex flex-col w-full md:w-auto self-center md:self-end">
-            <Button type="submit" disabled={!isFormValid} className="w-full md:w-auto px-6 py-2 bg-blue-600 bg-opacity-5  text-white rounded-md hover:bg-blue-600"> Search</Button>
+            <Button type="submit" disabled={!isFormValid} className="w-full md:w-auto px-6 py-2"> Search</Button>
           </div>
         </form>
       </div>

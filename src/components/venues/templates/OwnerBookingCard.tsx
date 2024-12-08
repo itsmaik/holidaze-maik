@@ -35,9 +35,10 @@ export default function OwnerBookingCard({ venue, venueId, bookings }: Props) {
           </>
         </table>
       </div>
-
-      <Button onClick={handleDelete} className="mt-10">Delete venue</Button>
-      <EditVenueModal venue={venue}  />
-    </div>
+      <div className="flex flex-row mt-10 justify-center gap-8">
+        <Button onClick={handleDelete}>Delete venue</Button>
+        <EditVenueModal venue={venue}  />
+        </div>
+      </div>
   );
 }

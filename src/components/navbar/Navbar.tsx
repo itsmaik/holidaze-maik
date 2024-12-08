@@ -37,7 +37,7 @@ export default function Navbar() {
         </Link>
 
         {!isLoggedIn ? (
-          <div className='flex space-x-2 text-black'>
+          <div className='flex space-x-2'>
             <Button onClick={() => setLoginOpen(true)}> Login </Button>
             <Button onClick={() => setRegisterOpen(true)}> Register </Button>
           </div>
