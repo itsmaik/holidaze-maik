@@ -150,6 +150,54 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
         )}
       </div>
 
+      <div className='mb-4 flex flex-row justify-around'>
+        <label htmlFor="wifi">Wifi</label>
+        <input
+          className=''
+          type='checkbox'
+          id="wifi"
+          {...register("meta.wifi")}
+        />
+        {errors.meta?.wifi && (
+          <p className='text-red-500'>{errors.meta?.wifi.message}</p>
+        )}
+
+        <label htmlFor="breakfast">Breakfast</label>
+        <input
+          className=''
+          type='checkbox'
+          id="breakfast"
+          {...register("meta.breakfast")}
+        />
+        {errors.meta?.breakfast && (
+          <p className='text-red-500'>{errors.meta?.breakfast.message}</p>
+        )}
+      </div>
+
+      <div className='mb-4 flex flex-row justify-around'>
+        <label htmlFor="parking">Parking</label>
+        <input
+          className=''
+          type='checkbox'
+          id="parking"
+          {...register("meta.parking")}
+        />
+        {errors.meta?.parking && (
+          <p className='text-red-500'>{errors.meta?.parking.message}</p>
+        )}
+
+        <label htmlFor="pets">Pets Allowed</label>
+        <input
+          className=''
+          type='checkbox'
+          id="pets"
+          {...register("meta.pets")}
+        />
+        {errors.meta?.pets && (
+          <p className='text-red-500'>{errors.meta?.pets.message}</p>
+        )}
+      </div>
+
       <button
         type="submit"
         className="bg-black text-white text-xl p-2 w-full rounded-md font-semibold mt-4 mb-2"
