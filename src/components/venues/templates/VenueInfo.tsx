@@ -38,12 +38,12 @@ export default function VenueInfo({
   meta,
 }: Props) {
   return (
-    <div className='space-y-9'>
-      <div className='flex items-start gap-8 flex-col xl:flex-row'>
+    <>
+      <div className='flex items-center justify-between w-full'>
         <div className='flex flex-col items-start'>
           <h1 className='text-gray-700 text-2xl font-bold'>{name}</h1>
           <span className='text-2x text-gray-500'>
-            {location.address} {location.city} {location.country}
+            {location.city || "Oslo"}
           </span>
         </div>
         <StarComponent rating={rating} />
@@ -60,13 +60,13 @@ export default function VenueInfo({
         <strong className='text-gray-700 font-bold text-xl'>
           Offered Amenities
         </strong>
-        <div className='grid grid-cols-1 gap-y-5 gap-x-20 mt-3.5 xl:grid-cols-2'>
+        <div className='grid grid-cols-1 gap-y-5 gap-x-20 mt-3.5 md:grid-cols-2'>
           <Amenity title='Breakfast' hasAmenity={meta.breakfast} />
           <Amenity title='Parking' hasAmenity={meta.parking} />
           <Amenity title='Pets' hasAmenity={meta.pets} />
           <Amenity title='Wi-fi' hasAmenity={meta.wifi} />
         </div>
       </div>
-    </div>
+    </>
   );
 }

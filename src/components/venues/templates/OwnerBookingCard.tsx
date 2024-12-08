@@ -26,7 +26,7 @@ export default function OwnerBookingCard({ venueId, bookings }: Props) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-4 bg-white shadow-lg rounded-lg">
+    <div className="max-w-5xl mx-auto mt-10 p-4 bg-white shadow-lg rounded-lg">
       <h1 className="text-xl font-semibold text-gray-800">Customers bookings for this venue</h1>
     
       <div className="overflow-x-auto mt-6">
@@ -38,7 +38,7 @@ export default function OwnerBookingCard({ venueId, bookings }: Props) {
         </table>
       </div>
 
-      <Button onClick={handleDelete}>Delete venue</Button>
+      <Button onClick={handleDelete} className="mt-10">Delete venue</Button>
     </div>
   );
 }

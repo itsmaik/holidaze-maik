@@ -22,7 +22,7 @@ export default function BookingsTableBody({bookings}) {
             No bookings made for this venue.
           </td>
         </tr>
-      )};
+      )}
     </tbody>
   )
 }
