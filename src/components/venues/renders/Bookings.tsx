@@ -1,5 +1,5 @@
 import useCurrencyFormatter from "@hooks/useCurrencyFormatter";
-import BookingCard from "../templates/BookingCard";
+import BookingCard from "../bookings/BookingCard";
 import OwnerBookingCard from "../templates/OwnerBookingCard";
 import type { TBooking } from "src/types/bookingTypes";
 import { TEditVenueProps } from "src/types/editVenueTypes";
