@@ -10,7 +10,7 @@ import { ProfileBookingsHeaders } from "@utils/functions/bookingHeaders";
 import EditProfileForm from "@components/profile/EditProfileForm";
 
 export default function ProfileComponent() {
-  const [activeTab, setActiveTab] = useState("venues");
+  const [activeTab, setActiveTab] = useState("bookings");
   const [isVenueOpen, setVenueOpen] = useState(false);
   const [isEditProfileOpen, setEditProfileOpen] = useState(false);
 
@@ -57,20 +57,24 @@ export default function ProfileComponent() {
         <button onClick={() => setEditProfileOpen(true)} className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
           Edit Profile
         </button>
-        <button onClick={() => setVenueOpen(true)} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+        {profile.venueManager && 
+          <button onClick={() => setVenueOpen(true)} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
           New Venue
-        </button>
+         </button>
+        }
       </div>
 
       {/* Tabs */}
       <div className="mt-20">
         <nav className="flex justify-start border-b">
-          <button className="px-4 py-2 text-blue-600 border-b-2 border-blue-600" onClick={() => setActiveTab("venues")}>
-            My Venues
-          </button>
           <button className="px-4 py-2 text-gray-600 hover:text-blue-600" onClick={() => setActiveTab("bookings")}>
             My Bookings
           </button>
+          {profile.venueManager && 
+            <button className="px-4 py-2 text-gray-600 hover:text-blue-600" onClick={() => setActiveTab("venues")}>
+            My Venues
+          </button>
+          }
         </nav>
         <div className="mt-8">
           {/* Tab content here */}
