@@ -5,9 +5,9 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Login from "@components/auth/login/Login";
 import SingleVenue from "@pages/SingleVenues";
-import SearchResults from "./components/searchbar/SearchResults";
 import Profile from "@pages/Profile";
 import "react-calendar/dist/Calendar.css";
+import SearchResults from "@components/searchbar/SearchResults";
 
 function App() {
   return (
