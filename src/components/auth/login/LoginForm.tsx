@@ -58,7 +58,7 @@ export default function LoginForm({ onSubmit, apiError }: TLoginFormProps) {
 
         <button
           type='submit'
-          className='bg-black text-white text-xl p-2 w-full rounded-md font-semibold mb-2'
+          className='bg-black text-white text-xl p-2 w-full rounded-md font-semibold mt-4 mb-2'
         >
           Login
         </button>

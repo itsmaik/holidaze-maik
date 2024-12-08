@@ -20,7 +20,7 @@ export default function CreateVenueForm() {
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
 
         <div className='mb-4 flex flex-col items-start'>
-          <label htmlFor="name" className="">Name <span className='text-red-500'>*</span></label>
+          <label htmlFor="name">Name <span className='text-red-500'>*</span></label>
           <input
             className='input'
             type='text'
@@ -198,7 +198,7 @@ export default function CreateVenueForm() {
 
         <button
           type='submit'
-          className='bg-black text-white text-xl p-2 w-full rounded-md font-semibold mb-2'
+          className='bg-black text-white text-xl p-2 w-full rounded-md font-semibold mt-4 mb-2'
         >
           Create new Venue
         </button>

@@ -3,6 +3,7 @@ import Button from "@components/globals/Button";
 import useDeleteVenue from "../actions/delete-venue/useDelete";
 import TableHeader from "@components/profile/TableHeader";
 import BookingsTableBody from "@components/profile/BookingsTableBody";
+import { bookingsHeaders } from "@utils/functions/bookingHeaders";
 
 type Props = {
   bookings: TBooking[];
@@ -12,12 +13,6 @@ type Props = {
 export default function OwnerBookingCard({ venueId, bookings }: Props) {
   const id = venueId;
   const {deleteVenue} = useDeleteVenue();
-  const bookingsHeaders = {
-    header1: "Customer",
-    header2: "Check-In",
-    header3: "Check-out",
-    header4: "Guests",
-  }
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this venue?")) {

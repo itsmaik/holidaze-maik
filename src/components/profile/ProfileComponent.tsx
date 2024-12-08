@@ -6,10 +6,14 @@ import MyVenuesList from "./MyVenuesList";
 import MyBookingsList from "./MyBookingsList";
 import Modal from "@components/globals/Modal";
 import CreateVenue from "@components/venues/actions/create-venue/CreateVenue";
+import { ProfileBookingsHeaders } from "@utils/functions/bookingHeaders";
+import EditProfileForm from "@components/profile/EditProfileForm";
 
 export default function ProfileComponent() {
   const [activeTab, setActiveTab] = useState("venues");
   const [isVenueOpen, setVenueOpen] = useState(false);
+  const [isEditProfileOpen, setEditProfileOpen] = useState(false);
+
   const {userName} = useAuth();
 
   const { data: profile, isLoading, error } = useQuery({
@@ -17,13 +21,7 @@ export default function ProfileComponent() {
     queryFn: () => fetchUserProfile(userName as string),
     enabled: !!userName,
   });
-  
-  const myBookingsHeaders = {
-    header1: "Name",
-    header2: "Check-In",
-    header3: "Check-out",
-    header4: "Price",
-  }
+
   
   if (isLoading) return <p>Loading profile...</p>;
   if (error) return <p>Failed to load profile</p>;
@@ -56,7 +54,7 @@ export default function ProfileComponent() {
 
       {/* Buttons */}
       <div className="mt-6 flex justify-center space-x-4">
-        <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
+        <button onClick={() => setEditProfileOpen(true)} className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
           Edit Profile
         </button>
         <button onClick={() => setVenueOpen(true)} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
@@ -77,7 +75,7 @@ export default function ProfileComponent() {
         <div className="mt-8">
           {/* Tab content here */}
           {activeTab === "venues" && <MyVenuesList venues={profile.venues} />}
-          {activeTab === "bookings" && <MyBookingsList bookings={profile.bookings} headers={myBookingsHeaders} />}
+          {activeTab === "bookings" && <MyBookingsList bookings={profile.bookings} headers={ProfileBookingsHeaders} />}
         </div>
       </div>
 
@@ -88,6 +86,13 @@ export default function ProfileComponent() {
           title='Create a new Venue'
           >
           <CreateVenue />
+        </Modal>
+        <Modal
+          isOpen={isEditProfileOpen}
+          onClose={() => setEditProfileOpen(false)}
+          title='Edit Profile'
+          >
+          <EditProfileForm />
         </Modal>
       </div>
     </div>

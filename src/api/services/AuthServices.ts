@@ -11,7 +11,12 @@ export const registerUser = async ({ userData }: TRegisterProps) => {
   return response.data.data;
 };
 
-export const fetchUserProfile = async (email: string) => {
-  const response = await axiosInstance.get(`/holidaze/profiles/${email}?_bookings=true&_venues=true`);
+export const fetchUserProfile = async (name: string) => {
+  const response = await axiosInstance.get(`/holidaze/profiles/${name}?_bookings=true&_venues=true`);
   return response.data.data;
+};
+
+export const updateUserProfile = async (name: string, profileData: any) => {
+  const response = await axiosInstance.put(`/holidaze/profiles/${name}`, profileData);
+  return response.data;
 };
