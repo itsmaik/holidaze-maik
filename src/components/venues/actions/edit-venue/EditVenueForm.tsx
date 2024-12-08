@@ -7,6 +7,9 @@ type EditVenueFormProps = {
 };
 
 export default function EditVenueForm({ venue }: EditVenueFormProps) {
+
+  console.log(venue);
+  
   const {
     register,
     handleSubmit,
@@ -27,7 +30,6 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      {/* Form Fields (Similar to CreateVenueForm) */}
       <div className="mb-4 flex flex-col items-start">
         <label htmlFor="name">Name <span className="text-red-500">*</span></label>
         <input
@@ -49,7 +51,6 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
         {errors.description && <p className="text-red-500">{errors.description.message}</p>}
       </div>
 
-      {/* Media Field */}
       <div className="mb-4 flex flex-col items-start">
         <label htmlFor="media">Image URL <span className="text-red-500">*</span></label>
         <input
@@ -67,8 +68,87 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
         {errors.media?.[0] && <p className="text-red-500">{errors.media[0]?.message}</p>}
       </div>
 
-      {/* Additional fields (city, country, price, etc.) */}
-      {/* Similar structure as CreateVenueForm */}
+      <div className='mb-4 flex flex-col items-start'>
+        <label htmlFor="city">City <span className='text-red-500'>*</span></label>
+        <input
+          className='input'
+          type='text'
+          id="city"
+          {...register("location.city", {
+            required: "City is required",
+          })}
+          placeholder='City'
+        />
+        {errors.location?.city && (
+          <p className='text-red-500'>{errors.location?.city.message}</p>
+        )}
+      </div>
+
+      <div className='mb-4 flex flex-col items-start'>
+        <label htmlFor="country">Country</label>
+        <input
+          className='input'
+          type='text'
+          id="country"
+          {...register("location.country",)}
+          placeholder='Country'
+        />
+        {errors.location?.country && (
+          <p className='text-red-500'>{errors.location?.country.message}</p>
+        )}
+      </div>
+
+      <div className='mb-4 flex flex-col items-start'>
+        <label htmlFor="price">Price <span className='text-red-500'>*</span></label>
+        <input
+          className='input'
+          type='text'
+          id="price"
+          {...register("price", {
+            required: "Price is required",
+            setValueAs: (value) => (value ? parseFloat(value) : undefined)
+          })}
+          placeholder='Price'
+        />
+        {errors.price && (
+          <p className='text-red-500'>{errors.price.message}</p>
+        )}
+      </div>
+
+      <div className='mb-4 flex flex-col items-start'>
+        <label htmlFor="maxGuests">Max number of guests <span className='text-red-500'>*</span></label>
+        <input
+          className='input'
+          type='text'
+          id="maxGuests"
+          {...register("maxGuests", {
+            required: "Max number of guests is required",
+            setValueAs: (value) => (value ? parseInt(value) : undefined)
+          })}
+          placeholder='guests'
+        />
+        {errors.maxGuests && (
+          <p className='text-red-500'>{errors.maxGuests.message}</p>
+        )}
+      </div>
+
+      <div className='mb-4 flex flex-col items-start'>
+        <label htmlFor="rating">Rating</label>
+        <input
+          className='input'
+          type='number'
+          id="rating"
+          {...register("rating", {
+            setValueAs: (value) => (value ? parseFloat(value) : undefined),
+          })}
+          min="0"
+          max="5"
+          placeholder='rating'
+        />
+        {errors.rating && (
+          <p className='text-red-500'>{errors.rating.message}</p>
+        )}
+      </div>
 
       <button
         type="submit"

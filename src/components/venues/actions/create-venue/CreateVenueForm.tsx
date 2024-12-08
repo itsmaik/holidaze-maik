@@ -72,13 +72,13 @@ export default function CreateVenueForm() {
             className='input'
             type='text'
             id="city"
-            {...register("city", {
+            {...register("location.city", {
               required: "City is required",
             })}
             placeholder='City'
           />
-          {errors.city && (
-            <p className='text-red-500'>{errors.city.message}</p>
+          {errors.location?.city && (
+            <p className='text-red-500'>{errors.location?.city.message}</p>
           )}
         </div>
 
@@ -88,11 +88,11 @@ export default function CreateVenueForm() {
             className='input'
             type='text'
             id="country"
-            {...register("country",)}
+            {...register("location.country",)}
             placeholder='Country'
           />
-          {errors.country && (
-            <p className='text-red-500'>{errors.country.message}</p>
+          {errors.location?.country && (
+            <p className='text-red-500'>{errors.location?.country.message}</p>
           )}
         </div>
 
@@ -154,10 +154,10 @@ export default function CreateVenueForm() {
             className=''
             type='checkbox'
             id="wifi"
-            {...register("wifi")}
+            {...register("meta.wifi")}
           />
-          {errors.wifi && (
-            <p className='text-red-500'>{errors.wifi.message}</p>
+          {errors.meta?.wifi && (
+            <p className='text-red-500'>{errors.meta?.wifi.message}</p>
           )}
 
           <label htmlFor="breakfast">Breakfast</label>
@@ -165,10 +165,10 @@ export default function CreateVenueForm() {
             className=''
             type='checkbox'
             id="breakfast"
-            {...register("breakfast")}
+            {...register("meta.breakfast")}
           />
-          {errors.breakfast && (
-            <p className='text-red-500'>{errors.breakfast.message}</p>
+          {errors.meta?.breakfast && (
+            <p className='text-red-500'>{errors.meta?.breakfast.message}</p>
           )}
         </div>
 
@@ -178,10 +178,10 @@ export default function CreateVenueForm() {
             className=''
             type='checkbox'
             id="parking"
-            {...register("parking")}
+            {...register("meta.parking")}
           />
-          {errors.parking && (
-            <p className='text-red-500'>{errors.parking.message}</p>
+          {errors.meta?.parking && (
+            <p className='text-red-500'>{errors.meta?.parking.message}</p>
           )}
 
           <label htmlFor="pets">Pets Allowed</label>
@@ -189,10 +189,10 @@ export default function CreateVenueForm() {
             className=''
             type='checkbox'
             id="pets"
-            {...register("pets")}
+            {...register("meta.pets")}
           />
-          {errors.pets && (
-            <p className='text-red-500'>{errors.pets.message}</p>
+          {errors.meta?.pets && (
+            <p className='text-red-500'>{errors.meta?.pets.message}</p>
           )}
         </div>
 
