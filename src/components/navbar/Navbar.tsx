@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "@hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ export default function Navbar() {
 
   const navigate = useNavigate();
   const heroImage = heroImg;
+  const isProfilePage = location.pathname === "/profile";
 
   const handleNavigate = () => {
     navigate("/profile");
@@ -25,7 +26,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className='relative w-full h-96 bg-cover'
+      className={`relative w-full ${
+        isProfilePage ? "h-20" : "h-96"
+      } bg-cover`}
       style={{ backgroundImage: `url(${heroImage})` }}
     >
       <div className='relative z-10 flex items-center justify-between p-6'>
@@ -77,9 +80,11 @@ export default function Navbar() {
         </Modal>
       </div>
 
-      <div className='relative z-1 flex flex-col items-center justify-center h-80 px-6'>
-        <SearchBarForm />
-      </div>
+      {!isProfilePage && (
+        <div className="relative z-1 flex flex-col items-center justify-center h-80 px-6">
+          <SearchBarForm />
+        </div>
+      )}
     </nav>
   );
 }
