@@ -44,7 +44,7 @@ export default function VenueById() {
   
             {/* Listed By Section */}
             {data && data.owner && (
-              <div className="absolute bottom-4 left-4 bg-white bg-opacity-75 px-4 py-2 rounded-md shadow-md">
+              <div className="absolute bottom-4 left-4 bg-white bg-opacity-90 px-4 py-2 rounded-md shadow-md">
                 <ListedBy owner={data.owner.name} price={data.price} />
               </div>
             )}

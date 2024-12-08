@@ -38,7 +38,7 @@ export default function OwnerBookingCard({ venue, venueId, bookings }: Props) {
         </table>
       </div>
       <div className='flex flex-row mt-10 justify-center gap-8'>
-        <Button onClick={handleDelete}>Delete venue</Button>
+        <Button onClick={handleDelete}>Delete Venue</Button>
         <EditVenueModal venue={venue} />
       </div>
     </div>

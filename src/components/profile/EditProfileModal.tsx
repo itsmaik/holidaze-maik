@@ -9,7 +9,7 @@ export default function EditProfileModal() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200"
+        className="px-4 py-2 bg-gray-100 font-semibold text-gray-700 rounded-md hover:bg-gray-200"
       >
         Edit Profile
       </button>
