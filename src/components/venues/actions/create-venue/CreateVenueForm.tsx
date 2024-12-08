@@ -19,8 +19,8 @@ export default function CreateVenueForm() {
     <>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
 
-        <div className='mb-4'>
-          <label htmlFor="name">Name <span className='text-red-500'>*</span></label>
+        <div className='mb-4 flex flex-col items-start'>
+          <label htmlFor="name" className="">Name <span className='text-red-500'>*</span></label>
           <input
             className='input'
             type='text'
@@ -31,7 +31,7 @@ export default function CreateVenueForm() {
           {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
         </div>
 
-        <div className='mb-4'>
+        <div className='mb-4 flex flex-col items-start'>
           <label htmlFor="description">Description <span className='text-red-500'>*</span></label>
           <textarea
             className='input'
@@ -46,7 +46,7 @@ export default function CreateVenueForm() {
           )}
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 flex flex-col items-start">
           <label htmlFor="media">Image URL <span className='text-red-500'>*</span></label>
           <input
             className="input"
@@ -66,7 +66,7 @@ export default function CreateVenueForm() {
           )}
         </div>
 
-        <div className='mb-4'>
+        <div className='mb-4 flex flex-col items-start'>
           <label htmlFor="city">City <span className='text-red-500'>*</span></label>
           <input
             className='input'
@@ -82,7 +82,7 @@ export default function CreateVenueForm() {
           )}
         </div>
 
-        <div className='mb-4'>
+        <div className='mb-4 flex flex-col items-start'>
           <label htmlFor="country">Country</label>
           <input
             className='input'
@@ -96,7 +96,7 @@ export default function CreateVenueForm() {
           )}
         </div>
 
-        <div className='mb-4'>
+        <div className='mb-4 flex flex-col items-start'>
           <label htmlFor="price">Price <span className='text-red-500'>*</span></label>
           <input
             className='input'
@@ -113,7 +113,7 @@ export default function CreateVenueForm() {
           )}
         </div>
 
-        <div className='mb-4'>
+        <div className='mb-4 flex flex-col items-start'>
           <label htmlFor="maxGuests">Max number of guests <span className='text-red-500'>*</span></label>
           <input
             className='input'
@@ -130,7 +130,7 @@ export default function CreateVenueForm() {
           )}
         </div>
 
-        <div className='mb-4'>
+        <div className='mb-4 flex flex-col items-start'>
           <label htmlFor="rating">Rating</label>
           <input
             className='input'

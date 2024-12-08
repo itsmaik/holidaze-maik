@@ -8,14 +8,12 @@ import Modal from "@components/globals/Modal";
 import Login from "@components/auth/login/Login";
 import Register from "@components/auth/register/Register";
 import SearchBarForm from "../searchbar/SearchBarForm";
-import CreateVenue from "@components/venues/actions/create-venue/CreateVenue";
 import { CgProfile } from "react-icons/cg";
 import { LuLogOut } from "react-icons/lu";
 
 export default function Navbar() {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);
-  const [isVenueOpen, setVenueOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
 
   const navigate = useNavigate();
@@ -76,14 +74,6 @@ export default function Navbar() {
           title='Register a new user account'
         >
           <Register onSuccess={() => setRegisterOpen(false)} />
-        </Modal>
-
-        <Modal
-          isOpen={isVenueOpen}
-          onClose={() => setVenueOpen(false)}
-          title='Create a new Venue'
-        >
-          <CreateVenue />
         </Modal>
       </div>
 
