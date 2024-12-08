@@ -3,7 +3,7 @@ type Media = {
   alt: string;
 };
 
-export type TCreateVenueFormInput = {
+export type TEditVenueProps = {
   name: string;
   description: string;
   city: string;
@@ -16,8 +16,4 @@ export type TCreateVenueFormInput = {
   parking: boolean;
   breakfast: boolean;
   pets: boolean;
-};
-
-export type TCreateVenueProps = {
-  newVenue: TCreateVenueFormInput;
 };

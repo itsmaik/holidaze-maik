@@ -4,13 +4,16 @@ import useDeleteVenue from "../actions/delete-venue/useDelete";
 import TableHeader from "@components/profile/TableHeader";
 import BookingsTableBody from "@components/profile/BookingsTableBody";
 import { bookingsHeaders } from "@utils/functions/bookingHeaders";
+import EditVenueModal from "../actions/edit-venue/EditVenueModal";
+import { TEditVenueProps } from "src/types/editVenueTypes";
 
 type Props = {
   bookings: TBooking[];
   venueId: string;
+  venue: TEditVenueProps;
 };
 
-export default function OwnerBookingCard({ venueId, bookings }: Props) {
+export default function OwnerBookingCard({ venue, venueId, bookings }: Props) {
   // const id = venueId;
   const {deleteVenue} = useDeleteVenue();
 
@@ -34,6 +37,7 @@ export default function OwnerBookingCard({ venueId, bookings }: Props) {
       </div>
 
       <Button onClick={handleDelete} className="mt-10">Delete venue</Button>
+      <EditVenueModal venue={venue}  />
     </div>
   );
 }

@@ -65,6 +65,7 @@ export default function VenueById() {
         {/* Bookings Section */}
         <div>
           <Bookings
+            venue={data}
             venueId={data.id}
             price={data.price}
             bookings={data.bookings}
