@@ -55,11 +55,11 @@ export default function SearchBarForm () {
           <div className="flex flex-row w-full gap-2 md:w-auto md:gap-4">
             <div className="flex flex-col w-1/2">
               <label htmlFor="checkIn" className="text-sm sm:text-base hidden sm:block">Check-In</label>
-              <input type="date" id="checkIn" name="checkIn" value={formValues.checkIn} onChange={handleChange} aria-label="Check-in date" className="w-full px-4 py-2 focus:outline-none h-10 rounded-md"/>
+              <input type="date" id="checkIn" name="checkIn" value={formValues.checkIn} onChange={handleChange} aria-label="Check-in date" className="w-full text-gray-400 px-4 py-2 focus:outline-none h-10 rounded-md"/>
             </div>
             <div className="flex flex-col w-1/2">
               <label htmlFor="checkOut" className="text-sm sm:text-base hidden sm:block">Check-Out</label>
-              <input type="date" id="checkOut" name="checkOut" value={formValues.checkOut} onChange={handleChange} aria-label="Check-out date" className="w-full px-4 py-2 focus:outline-none h-10 rounded-md"/>
+              <input type="date" id="checkOut" name="checkOut" value={formValues.checkOut} onChange={handleChange} aria-label="Check-out date" className="w-full text-gray-400 px-4 py-2 focus:outline-none h-10 rounded-md"/>
             </div>
           </div>
 
