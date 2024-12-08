@@ -39,17 +39,29 @@ export default function Navbar() {
           <div className='flex space-x-2 text-black'>
             <Button onClick={() => setLoginOpen(true)}> Login </Button>
             <Button onClick={() => setRegisterOpen(true)}> Register </Button>
-            <CgProfile className="text-[3rem] text-white" />
-            <LuLogOut className="text-[3rem] text-white" />
           </div>
         ) : (
-          <div className='flex space-x-2 text-black'>
-            <Button onClick={() => setVenueOpen(true)}> Create Venue </Button>
-            <Button onClick={handleNavigate}> Profile </Button>
-            <Button onClick={logout}> Logout </Button>
-          </div>
-        )}
+          <div className="flex flex-wrap gap-4 items-center">
+            {/* Profile Button */}
+            <button
+              onClick={handleNavigate}
+              className="flex flex-col items-center justify-center border rounded-md py-1 px-4 font-semibold bg-white text-black"
+              aria-label="Profile"
+            >
+              <CgProfile className="text-2xl" />
+            </button>
 
+            {/* Logout Button */}
+            <button
+              onClick={logout}
+              className="flex flex-col items-center justify-center border rounded-md py-1 px-4 font-semibold bg-white bg-opacity-20 hover:bg-opacity-100 text-black"
+              aria-label="Logout"
+            >
+              <LuLogOut className="text-2xl" />
+            </button>
+          </div>
+
+        )}
         <Modal
           isOpen={isLoginOpen}
           onClose={() => setLoginOpen(false)}
