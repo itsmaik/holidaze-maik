@@ -7,7 +7,7 @@ import Login from "@components/auth/login/Login";
 import SingleVenue from "@pages/SingleVenues";
 import Profile from "@pages/Profile";
 import "react-calendar/dist/Calendar.css";
-import SearchResults from "./components/searchbar/SearchResults";
+import SearchResults from "./components/globals/SearchResults";
 
 function App() {
   return (
