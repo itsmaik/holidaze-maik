@@ -40,13 +40,12 @@ git clone https://github.com/itsmaik/holidaze-maik.git
 
 ```
 npm install
-```
 
 ### Running
 
 To run the app, run the following commands:
 
-```
+```bash
 npm run build
 ```
 
