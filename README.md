@@ -1,50 +1,68 @@
-# React + TypeScript + Vite
+# Project Exam 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Screenshot of homepage desktop version
+![image](/src/assets/holidaze-desktop.png)
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
 
-## Expanding the ESLint configuration
+Holidaze is an accommodation booking webpage made for education purposes.
+In the Holidaze application the user can:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- A User with @stud.noroff.no email can register an account as Customer or Venue Manager.
+- A registered user can login.
+- A customer can search for venues.
+- A registered user can create and edit an user profile.
+- A customer can view a calendar with available dates for a Venue.
+- A registered customer can create a booking at a Venue
+- A registered customer can view their upcoming bookings
+- A registered Venue manager can create a Venue
+- A registered Venue manager can update and a Venue they manage
+- A registered Venue manager can view bookings for a Venue they manage
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Built With
+- TypeScript
+- React
+- Tailwind
+- Vite
+
+## Getting Started
+
+### Installing
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/itsmaik/holidaze-maik.git
+
+2. Install the dependencies:
+
+```
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Running
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+To run the app, run the following commands:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+npm run build
+```
+
+Check it live on the browser using Netlify:
+
+[Holidaze](https://legendary-begonia-adec8c.netlify.app/)
+
+## Contact
+
+[E-mail](mailto:itsmaik@icloud.com)
+
+[LinkedIn](https://linkedin.com/in/maik-helland-olsen-246338294)
+
+[Instagram](https://www.instagram.com/itsmemaik_/)
+
+
+## Portfolio
+
+[Portfolio](https://itsmemaik-portfolio.netlify.app/)
