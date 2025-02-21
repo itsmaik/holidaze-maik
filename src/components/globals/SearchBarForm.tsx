@@ -1,13 +1,15 @@
 import { useState, ChangeEvent, FormEvent, JSX } from "react";
-import Button from "@components/globals/Button";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker"; // <-- New import
+import "react-datepicker/dist/react-datepicker.css"; // <-- Import the styles
 import AnimatedText from "@components/navbar/AnimatedText";
+import Button from "@components/globals/Button";
 
 // Define the structure of the search form values
 interface SearchFormValues {
   location: string;
-  checkIn: string;
-  checkOut: string;
+  checkIn: Date | null;
+  checkOut: Date | null;
   guests: string;
 }
 
@@ -15,8 +17,8 @@ export default function SearchBarForm(): JSX.Element {
   // Initialize form state
   const initialFormValues: SearchFormValues = {
     location: "",
-    checkIn: "",
-    checkOut: "",
+    checkIn: null,
+    checkOut: null,
     guests: "",
   };
 
@@ -24,26 +26,47 @@ export default function SearchBarForm(): JSX.Element {
     useState<SearchFormValues>(initialFormValues);
   const navigate = useNavigate();
 
-  // Update state on input change
+  // Update state on text input change
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Update check-in date
+  const handleCheckInChange = (date: Date | null) => {
+    setFormValues((prev) => ({ ...prev, checkIn: date }));
+  };
+
+  // Update check-out date
+  const handleCheckOutChange = (date: Date | null) => {
+    setFormValues((prev) => ({ ...prev, checkOut: date }));
   };
 
   // Handle form submission to build a query string and navigate to search results
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    const query = new URLSearchParams(
-      Object.entries(formValues).reduce((acc, [key, value]) => {
-        if (value) acc[key] = value.toString();
-        return acc;
-      }, {} as Record<string, string>)
-    ).toString();
+    // Convert date objects to strings (e.g., ISO format or dd/mm/yyyy)
+    const checkInString = formValues.checkIn
+      ? formValues.checkIn.toISOString().split("T")[0] // "YYYY-MM-DD"
+      : "";
+    const checkOutString = formValues.checkOut
+      ? formValues.checkOut.toISOString().split("T")[0]
+      : "";
+
+    // Build the query parameters
+    const queryParams: Record<string, string> = {};
+    if (formValues.location) queryParams.location = formValues.location;
+    if (checkInString) queryParams.checkIn = checkInString;
+    if (checkOutString) queryParams.checkOut = checkOutString;
+    if (formValues.guests) queryParams.guests = formValues.guests;
+
+    const query = new URLSearchParams(queryParams).toString();
 
     if (query) {
       navigate(`/search-results?${query}`);
     }
+
     // Reset form state after submission
     setFormValues(initialFormValues);
   };
@@ -62,6 +85,7 @@ export default function SearchBarForm(): JSX.Element {
         onSubmit={handleSubmit}
         className='flex flex-wrap justify-center gap-4 w-full md:w-auto'
       >
+        {/* LOCATION INPUT */}
         <div className='flex flex-col w-full md:w-auto'>
           <label
             htmlFor='location'
@@ -77,47 +101,49 @@ export default function SearchBarForm(): JSX.Element {
             onChange={handleChange}
             aria-label='Search location'
             placeholder='City, country, continent...'
-            className='w-full px-4 py-2 bg-white focus:outline-none rounded-md text-black'
+            className='w-full bg-white px-4 py-2 focus:outline-none rounded-md text-black'
           />
         </div>
 
-        <div className='flex flex-row w-full gap-2 md:w-auto md:gap-4'>
-          <div className='flex flex-col w-1/2'>
-            <label
-              htmlFor='checkIn'
-              className='text-sm sm:text-base hidden sm:block'
-            >
-              Check-In
-            </label>
-            <input
-              type='date'
-              id='checkIn'
-              name='checkIn'
-              value={formValues.checkIn}
-              onChange={handleChange}
-              aria-label='Check-in date'
-              className='w-full px-4 py-2 bg-white focus:outline-none rounded-md text-black'
-            />
-          </div>
-          <div className='flex flex-col w-1/2'>
-            <label
-              htmlFor='checkOut'
-              className='text-sm sm:text-base hidden sm:block'
-            >
-              Check-Out
-            </label>
-            <input
-              type='date'
-              id='checkOut'
-              name='checkOut'
-              value={formValues.checkOut}
-              onChange={handleChange}
-              aria-label='Check-out date'
-              className='w-full px-4 py-2 bg-white focus:outline-none rounded-md text-black'
-            />
-          </div>
+        {/* CHECK-IN DATEPICKER */}
+        <div className='flex flex-col w-1/2 md:w-auto'>
+          <label
+            htmlFor='checkIn'
+            className='text-sm sm:text-base hidden sm:block'
+          >
+            Check-In
+          </label>
+          <DatePicker
+            id='checkIn'
+            selected={formValues.checkIn}
+            onChange={handleCheckInChange}
+            minDate={new Date()}
+            placeholderText='Select check-in date'
+            className='w-full bg-white text-black px-4 py-2 focus:outline-none h-10 rounded-md'
+            dateFormat='dd/MM/yyyy'
+          />
         </div>
 
+        {/* CHECK-OUT DATEPICKER */}
+        <div className='flex flex-col w-1/2 md:w-auto'>
+          <label
+            htmlFor='checkOut'
+            className='text-sm sm:text-base hidden sm:block'
+          >
+            Check-Out
+          </label>
+          <DatePicker
+            id='checkOut'
+            selected={formValues.checkOut}
+            onChange={handleCheckOutChange}
+            minDate={formValues.checkIn || new Date()}
+            placeholderText='Select check-out date'
+            className='w-full bg-white text-black px-4 py-2 focus:outline-none h-10 rounded-md'
+            dateFormat='dd/MM/yyyy'
+          />
+        </div>
+
+        {/* GUESTS INPUT */}
         <div className='flex flex-col w-full md:w-auto'>
           <label
             htmlFor='guests'
@@ -133,10 +159,11 @@ export default function SearchBarForm(): JSX.Element {
             onChange={handleChange}
             aria-label='Number of guests'
             placeholder='Number of guests'
-            className='w-full px-4 py-2 bg-white focus:outline-none rounded-md text-black'
+            className='w-full bg-white px-4 py-2 focus:outline-none rounded-md text-black'
           />
         </div>
 
+        {/* SUBMIT BUTTON */}
         <div className='flex flex-col w-full md:w-auto self-center md:self-end'>
           <Button
             type='submit'
