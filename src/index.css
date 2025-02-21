@@ -19,14 +19,36 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
+main {
+  flex-grow: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+section {
+  width: 100%;
+  margin: 4rem 0rem;
+}
+
+@layer components {
+  .input {
+    @apply w-full p-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400
+    focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+    disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+    invalid:border-pink-500 invalid:text-pink-600
+    focus:invalid:border-pink-500 focus:invalid:ring-pink-500;
+  }
+}
