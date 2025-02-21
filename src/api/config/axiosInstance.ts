@@ -1,7 +1,5 @@
 import axios from "axios";
-import { useAuth } from "@hooks/useAuth";
-import { base_api_url } from "./config";
-import { api_key } from "./config";
+import { base_api_url, api_key } from "./config";
 
 const axiosInstance = axios.create({
   baseURL: base_api_url,
@@ -17,16 +15,17 @@ axiosInstance.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      useAuth().logout();
+      // Clear stored auth data and redirect to login
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      localStorage.removeItem("userName");
       window.location.href = "/login";
     }
     return Promise.reject(error);

@@ -1,16 +1,17 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 
-type TAuthContext = {
+interface TAuthContext {
   user: string | null;
   token: string | null;
   userName: string | null;
   login: (user: string, token: string, userName: string) => void;
   logout: () => void;
   isLoggedIn: boolean;
-};
-type TAuthProvider = {
+}
+
+interface TAuthProvider {
   children: React.ReactNode;
-};
+}
 
 export const AuthContext = createContext<TAuthContext | undefined>(undefined);
 
@@ -23,35 +24,43 @@ export default function AuthProvider({ children }: TAuthProvider) {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
-    const storedName = localStorage.getItem("userName");
+    const storedUserName = localStorage.getItem("userName");
 
-    if (storedUser && storedToken && storedName) {
+    if (storedUser && storedToken && storedUserName) {
       setUser(storedUser);
       setToken(storedToken);
-      setUserName(storedName)
+      setUserName(storedUserName);
       setIsLoggedIn(true);
     }
   }, []);
 
-  const login = (newUser: string, newToken: string, newName: string,) => {
-    setUser(newUser);
-    setToken(newToken);
-    setUserName(newName)
-    localStorage.setItem("token", newToken);
-    localStorage.setItem("user", newUser);
-    localStorage.setItem("name", newName);
-    setIsLoggedIn(true);
-  };
+  const login = useCallback(
+    (newUser: string, newToken: string, newUserName: string) => {
+      setUser(newUser);
+      setToken(newToken);
+      setUserName(newUserName);
+      localStorage.setItem("user", newUser);
+      localStorage.setItem("token", newToken);
+      localStorage.setItem("userName", newUserName);
+      setIsLoggedIn(true);
+    },
+    []
+  );
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setUser(null);
     setToken(null);
+    setUserName(null);
+    localStorage.removeItem("user");
     localStorage.removeItem("token");
-    setIsLoggedIn(false)
-  };
+    localStorage.removeItem("userName");
+    setIsLoggedIn(false);
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, token, userName, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, user, token, userName, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
