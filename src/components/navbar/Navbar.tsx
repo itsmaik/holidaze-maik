@@ -7,23 +7,28 @@ import SearchBarForm from "../globals/SearchBarForm";
 import heroImg from "src/assets/bg-img-1.avif";
 import { useAuth } from "@hooks/useAuth";
 
-export default function Navbar() {
-  const location = useLocation();
-  const isProfilePage = location.pathname === "/profile";
+export default function Navbar(): JSX.Element {
+  // Destructure pathname for concise conditional rendering
+  const { pathname } = useLocation();
+  const isProfilePage = pathname === "/profile";
   const { isLoggedIn } = useAuth();
+
+  // Dynamically set the navbar height based on the current route
+  const navHeight = isProfilePage ? "h-20" : "h-96";
 
   return (
     <nav
-      className={`relative w-full ${isProfilePage ? "h-20" : "h-96"} bg-cover`}
+      className={`relative w-full ${navHeight} bg-cover`}
       style={{ backgroundImage: `url(${heroImg})` }}
     >
       <div className='relative z-10 flex items-center justify-between p-6'>
+        {/* Logo linking back to home */}
         <Link to='/'>
           <div className='text-black font-bold text-2xl'>Holidaze</div>
         </Link>
 
         <div className='flex items-center gap-4'>
-          {/* Conditional Rendering for Auth Buttons */}
+          {/* Conditionally render authentication modals or profile options */}
           {!isLoggedIn ? (
             <>
               <LoginModal />
@@ -38,7 +43,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Search Bar for Non-Profile Pages */}
+      {/* Render the search bar only on pages other than the profile */}
       {!isProfilePage && (
         <div className='relative z-1 flex flex-col items-center justify-center h-80 px-6'>
           <SearchBarForm />
