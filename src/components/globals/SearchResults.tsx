@@ -20,28 +20,30 @@ export default function SearchResults() {
       : true;
 
     const matchesCheckOut = searchParams.get("checkOut")
-      ? new Date(searchParams.get("checkOut")!) <= new Date(venue.availableUntil)
+      ? new Date(searchParams.get("checkOut")!) <=
+        new Date(venue.availableUntil)
       : true;
 
     const matchesGuests = searchParams.get("guests")
       ? parseInt(searchParams.get("guests")!, 10) <= venue.maxGuests
       : true;
 
-    return matchesLocation && matchesCheckIn && matchesCheckOut && matchesGuests;
+    return (
+      matchesLocation && matchesCheckIn && matchesCheckOut && matchesGuests
+    );
   });
-  
 
   return (
     <>
       <section className='container mx-auto'>
-        <h1 className="text-2xl font-bold mb-4">Search Results</h1>
+        <h1 className='text-2xl font-bold mb-4'>Search Results</h1>
         {filteredVenues && filteredVenues.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center'>
             {filteredVenues.map((venue) => (
               <VenueListCard key={venue.id} venue={venue} />
             ))}
           </div>
-          ) : (
+        ) : (
           <p>No results found.</p>
         )}
       </section>
