@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, JSX } from "react";
 
 const AnimatedText = (): JSX.Element => {
   const baseText = "Find your next ";
@@ -37,10 +37,10 @@ const AnimatedText = (): JSX.Element => {
   }, [charIndex, isDeleting, currentWordIndex, words]);
 
   return (
-    <div className='absolute top-20 left-1/2 transform -translate-x-1/2'>
+    <div className='hidden md:block absolute top-10 lg:top-20 left-1/2 transform -translate-x-1/2'>
       <h1 className='text-4xl font-bold text-white'>
         {baseText}
-        <span className='text-green-100'>
+        <span className='text-black'>
           {words[currentWordIndex].slice(0, charIndex)}
         </span>
         <span className='animate-blink'>|</span>

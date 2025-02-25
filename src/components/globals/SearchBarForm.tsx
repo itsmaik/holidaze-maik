@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent, JSX } from "react";
 import { useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker"; // <-- New import
-import "react-datepicker/dist/react-datepicker.css"; // <-- Import the styles
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import AnimatedText from "@components/navbar/AnimatedText";
 import Button from "@components/globals/Button";
 
@@ -77,9 +77,7 @@ export default function SearchBarForm(): JSX.Element {
   return (
     <div className='container flex flex-col w-full items-center text-white'>
       {/* Animated header text (visible on medium screens and up) */}
-      <div className='text-center mb-4 hidden md:block'>
-        <AnimatedText />
-      </div>
+      <AnimatedText />
 
       <form
         onSubmit={handleSubmit}
@@ -105,42 +103,44 @@ export default function SearchBarForm(): JSX.Element {
           />
         </div>
 
-        {/* CHECK-IN DATEPICKER */}
-        <div className='flex flex-col w-1/2 md:w-auto'>
-          <label
-            htmlFor='checkIn'
-            className='text-sm sm:text-base hidden sm:block'
-          >
-            Check-In
-          </label>
-          <DatePicker
-            id='checkIn'
-            selected={formValues.checkIn}
-            onChange={handleCheckInChange}
-            minDate={new Date()}
-            placeholderText='Select check-in date'
-            className='w-full bg-white text-black px-4 py-2 focus:outline-none h-10 rounded-md'
-            dateFormat='dd/MM/yyyy'
-          />
-        </div>
+        <div className='flex flex-row w-full gap-2 md:w-auto md:gap-4'>
+          {/* CHECK-IN DATEPICKER */}
+          <div className='flex flex-col w-1/2 md:w-auto'>
+            <label
+              htmlFor='checkIn'
+              className='text-sm sm:text-base hidden sm:block'
+            >
+              Check-In
+            </label>
+            <DatePicker
+              id='checkIn'
+              selected={formValues.checkIn}
+              onChange={handleCheckInChange}
+              minDate={new Date()}
+              placeholderText='Select check-in date'
+              className='w-full bg-white text-black px-4 py-2 focus:outline-none h-10 rounded-md'
+              dateFormat='dd/MM/yyyy'
+            />
+          </div>
 
-        {/* CHECK-OUT DATEPICKER */}
-        <div className='flex flex-col w-1/2 md:w-auto'>
-          <label
-            htmlFor='checkOut'
-            className='text-sm sm:text-base hidden sm:block'
-          >
-            Check-Out
-          </label>
-          <DatePicker
-            id='checkOut'
-            selected={formValues.checkOut}
-            onChange={handleCheckOutChange}
-            minDate={formValues.checkIn || new Date()}
-            placeholderText='Select check-out date'
-            className='w-full bg-white text-black px-4 py-2 focus:outline-none h-10 rounded-md'
-            dateFormat='dd/MM/yyyy'
-          />
+          {/* CHECK-OUT DATEPICKER */}
+          <div className='flex flex-col w-1/2 md:w-auto'>
+            <label
+              htmlFor='checkOut'
+              className='text-sm sm:text-base hidden sm:block'
+            >
+              Check-Out
+            </label>
+            <DatePicker
+              id='checkOut'
+              selected={formValues.checkOut}
+              onChange={handleCheckOutChange}
+              minDate={formValues.checkIn || new Date()}
+              placeholderText='Select check-out date'
+              className='w-full bg-white text-black px-4 py-2 focus:outline-none h-10 rounded-md'
+              dateFormat='dd/MM/yyyy'
+            />
+          </div>
         </div>
 
         {/* GUESTS INPUT */}
