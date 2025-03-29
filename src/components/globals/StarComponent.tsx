@@ -7,7 +7,7 @@ export default function StarComponent({ rating }: Props) {
   const hasHalfStar = rating % 1 >= 0.5;
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
   return (
-    <div className='flex items-center gap-2'>
+    <div className='flex items-center gap-2 max-w-2/5 sm:max-w-full'>
       {Array.from({ length: fullStars }).map((_, index) => (
         <StarIcon key={`full-${index + 1}`} />
       ))}
