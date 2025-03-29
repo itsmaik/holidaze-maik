@@ -7,9 +7,6 @@ type EditVenueFormProps = {
 };
 
 export default function EditVenueForm({ venue }: EditVenueFormProps) {
-
-  console.log(venue);
-  
   const {
     register,
     handleSubmit,
@@ -30,33 +27,41 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div className="mb-4 flex flex-col items-start">
-        <label htmlFor="name">Name <span className="text-red-500">*</span></label>
+      <div className='mb-4 flex flex-col items-start'>
+        <label htmlFor='name'>
+          Name <span className='text-red-500'>*</span>
+        </label>
         <input
-          className="input"
-          type="text"
-          id="name"
+          className='input'
+          type='text'
+          id='name'
           {...register("name", { required: "Name is required" })}
         />
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
       </div>
 
-      <div className="mb-4 flex flex-col items-start">
-        <label htmlFor="description">Description <span className="text-red-500">*</span></label>
+      <div className='mb-4 flex flex-col items-start'>
+        <label htmlFor='description'>
+          Description <span className='text-red-500'>*</span>
+        </label>
         <textarea
-          className="input"
-          id="description"
+          className='input'
+          id='description'
           {...register("description", { required: "Description is required" })}
         />
-        {errors.description && <p className="text-red-500">{errors.description.message}</p>}
+        {errors.description && (
+          <p className='text-red-500'>{errors.description.message}</p>
+        )}
       </div>
 
-      <div className="mb-4 flex flex-col items-start">
-        <label htmlFor="media">Image URL <span className="text-red-500">*</span></label>
+      <div className='mb-4 flex flex-col items-start'>
+        <label htmlFor='media'>
+          Image URL <span className='text-red-500'>*</span>
+        </label>
         <input
-          className="input"
-          type="url"
-          id="media"
+          className='input'
+          type='url'
+          id='media'
           {...register("media.0", {
             required: "Image URL is required",
             pattern: {
@@ -65,15 +70,19 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
             },
           })}
         />
-        {errors.media?.[0] && <p className="text-red-500">{errors.media[0]?.message}</p>}
+        {errors.media?.[0] && (
+          <p className='text-red-500'>{errors.media[0]?.message}</p>
+        )}
       </div>
 
       <div className='mb-4 flex flex-col items-start'>
-        <label htmlFor="city">City <span className='text-red-500'>*</span></label>
+        <label htmlFor='city'>
+          City <span className='text-red-500'>*</span>
+        </label>
         <input
           className='input'
           type='text'
-          id="city"
+          id='city'
           {...register("location.city", {
             required: "City is required",
           })}
@@ -85,12 +94,12 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
       </div>
 
       <div className='mb-4 flex flex-col items-start'>
-        <label htmlFor="country">Country</label>
+        <label htmlFor='country'>Country</label>
         <input
           className='input'
           type='text'
-          id="country"
-          {...register("location.country",)}
+          id='country'
+          {...register("location.country")}
           placeholder='Country'
         />
         {errors.location?.country && (
@@ -99,31 +108,33 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
       </div>
 
       <div className='mb-4 flex flex-col items-start'>
-        <label htmlFor="price">Price <span className='text-red-500'>*</span></label>
+        <label htmlFor='price'>
+          Price <span className='text-red-500'>*</span>
+        </label>
         <input
           className='input'
           type='text'
-          id="price"
+          id='price'
           {...register("price", {
             required: "Price is required",
-            setValueAs: (value) => (value ? parseFloat(value) : undefined)
+            setValueAs: (value) => (value ? parseFloat(value) : undefined),
           })}
           placeholder='Price'
         />
-        {errors.price && (
-          <p className='text-red-500'>{errors.price.message}</p>
-        )}
+        {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
       </div>
 
       <div className='mb-4 flex flex-col items-start'>
-        <label htmlFor="maxGuests">Max number of guests <span className='text-red-500'>*</span></label>
+        <label htmlFor='maxGuests'>
+          Max number of guests <span className='text-red-500'>*</span>
+        </label>
         <input
           className='input'
           type='text'
-          id="maxGuests"
+          id='maxGuests'
           {...register("maxGuests", {
             required: "Max number of guests is required",
-            setValueAs: (value) => (value ? parseInt(value) : undefined)
+            setValueAs: (value) => (value ? parseInt(value) : undefined),
           })}
           placeholder='guests'
         />
@@ -133,16 +144,16 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
       </div>
 
       <div className='mb-4 flex flex-col items-start'>
-        <label htmlFor="rating">Rating</label>
+        <label htmlFor='rating'>Rating</label>
         <input
           className='input'
           type='number'
-          id="rating"
+          id='rating'
           {...register("rating", {
             setValueAs: (value) => (value ? parseFloat(value) : undefined),
           })}
-          min="0"
-          max="5"
+          min='0'
+          max='5'
           placeholder='rating'
         />
         {errors.rating && (
@@ -151,22 +162,22 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
       </div>
 
       <div className='mb-4 flex flex-row justify-around'>
-        <label htmlFor="wifi">Wifi</label>
+        <label htmlFor='wifi'>Wifi</label>
         <input
           className=''
           type='checkbox'
-          id="wifi"
+          id='wifi'
           {...register("meta.wifi")}
         />
         {errors.meta?.wifi && (
           <p className='text-red-500'>{errors.meta?.wifi.message}</p>
         )}
 
-        <label htmlFor="breakfast">Breakfast</label>
+        <label htmlFor='breakfast'>Breakfast</label>
         <input
           className=''
           type='checkbox'
-          id="breakfast"
+          id='breakfast'
           {...register("meta.breakfast")}
         />
         {errors.meta?.breakfast && (
@@ -175,22 +186,22 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
       </div>
 
       <div className='mb-4 flex flex-row justify-around'>
-        <label htmlFor="parking">Parking</label>
+        <label htmlFor='parking'>Parking</label>
         <input
           className=''
           type='checkbox'
-          id="parking"
+          id='parking'
           {...register("meta.parking")}
         />
         {errors.meta?.parking && (
           <p className='text-red-500'>{errors.meta?.parking.message}</p>
         )}
 
-        <label htmlFor="pets">Pets Allowed</label>
+        <label htmlFor='pets'>Pets Allowed</label>
         <input
           className=''
           type='checkbox'
-          id="pets"
+          id='pets'
           {...register("meta.pets")}
         />
         {errors.meta?.pets && (
@@ -199,8 +210,8 @@ export default function EditVenueForm({ venue }: EditVenueFormProps) {
       </div>
 
       <button
-        type="submit"
-        className="bg-black text-white text-xl p-2 w-full rounded-md font-semibold mt-4 mb-2"
+        type='submit'
+        className='bg-black text-white text-xl p-2 w-full rounded-md font-semibold mt-4 mb-2'
       >
         Update Venue
       </button>

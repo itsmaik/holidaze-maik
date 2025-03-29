@@ -3,7 +3,6 @@
 Screenshot of homepage desktop version
 ![image](/src/assets/holidaze-desktop.png)
 
-
 ## Description
 
 Holidaze is an accommodation booking webpage made for education purposes.
@@ -20,8 +19,8 @@ In the Holidaze application the user can:
 - A registered Venue manager can update and a Venue they manage
 - A registered Venue manager can view bookings for a Venue they manage
 
-
 ## Built With
+
 - TypeScript
 - React
 - Tailwind
@@ -39,6 +38,7 @@ git clone https://github.com/itsmaik/holidaze-maik.git
 2. Install the dependencies:
 
 ```
+
 npm install
 
 ### Running
@@ -51,7 +51,7 @@ npm run build
 
 Check it live on the browser using Netlify:
 
-[Holidaze](https://legendary-begonia-adec8c.netlify.app/)
+[Holidaze](https://holidaze-maik.netlify.app/)
 
 ## Contact
 
@@ -60,7 +60,6 @@ Check it live on the browser using Netlify:
 [LinkedIn](https://linkedin.com/in/maik-helland-olsen-246338294)
 
 [Instagram](https://www.instagram.com/itsmemaik_/)
-
 
 ## Portfolio
 

@@ -41,7 +41,9 @@ export default function VenueInfo({
     <>
       <div className='flex items-center justify-between w-full'>
         <div className='flex flex-col items-start'>
-          <h1 className='text-gray-700 text-2xl font-bold'>{name}</h1>
+          <h1 className='text-gray-700 text-2xl font-bold truncate max-w-[180px] sm:max-w-[350px]'>
+            {name}
+          </h1>
           <span className='text-2x text-gray-500'>
             {location.city || "Oslo"}
           </span>

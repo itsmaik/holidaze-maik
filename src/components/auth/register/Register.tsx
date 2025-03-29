@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 type TRegisterProps = {
   onSuccess: () => void;
-}
+};
 
 export default function Register({ onSuccess }: TRegisterProps) {
   const { login } = useAuth();
@@ -18,13 +18,13 @@ export default function Register({ onSuccess }: TRegisterProps) {
   const handleRegister = async (userData: TRegisterFormInput) => {
     try {
       const response = await registerUser({ userData });
-      if (response) { 
-        toast.success("User registered Successfully");
-        onSuccess()
-        login(response.user, response.token);
+      if (response) {
+        toast.success("User registered successfully");
+        login(response.email, response.accessToken, response.name);
+        onSuccess();
         navigate("/");
-      };
-    } catch (err) {
+      }
+    } catch (err: any) {
       if (err.response && err.response.data && err.response.data.errors) {
         setError(err.response.data.errors[0].message);
       } else if (err instanceof Error) {
@@ -33,9 +33,5 @@ export default function Register({ onSuccess }: TRegisterProps) {
     }
   };
 
-  return (
-    <div>
-      <RegisterForm onSubmit={handleRegister} apiError={error} />
-    </div>
-  );
+  return <RegisterForm onSubmit={handleRegister} apiError={error} />;
 }

@@ -33,12 +33,14 @@ export default function VenueListCard({ venue }: TVenueListProps) {
         </div>
 
         {venue.name && (
-          <div className="flex flex-col items-start">
-            <p className="font-semibold text-lg">{venue.name}</p>
-            <p className="font-semibold text-gray-700"><span>From</span> {formattedPrice} <span className="font-normal">per night</span></p>
+          <div className='flex flex-col items-start'>
+            <p className='font-semibold text-lg'>{venue.name}</p>
+            <p className='font-semibold text-gray-700'>
+              <span>From</span> {formattedPrice}{" "}
+              <span className='font-normal'>per night</span>
+            </p>
           </div>
-        )}  
-        
+        )}
       </Link>
     </div>
   );

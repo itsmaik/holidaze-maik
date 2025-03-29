@@ -7,7 +7,7 @@ import type { TLoginFormInput } from "src/types/loginTypes";
 
 type TLoginProps = {
   onSuccess: () => void;
-}
+};
 
 export default function Login({ onSuccess }: TLoginProps) {
   const { login } = useAuth();
@@ -18,16 +18,13 @@ export default function Login({ onSuccess }: TLoginProps) {
       const response = await loginUser(data.email, data.password);
       login(response.email, response.accessToken, response.name);
       setError(null);
-      if (response) return toast.success("Login Successful") && onSuccess();
-    } catch (err) {
+      toast.success("Login Successful");
+      onSuccess();
+    } catch (err: unknown) {
       if (err instanceof Error)
         setError("You have entered an invalid email or password");
     }
   };
 
-  return (
-    <>
-      <LoginForm onSubmit={handleLogin} apiError={error} />
-    </>
-  );
+  return <LoginForm onSubmit={handleLogin} apiError={error} />;
 }
