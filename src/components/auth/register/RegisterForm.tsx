@@ -31,7 +31,7 @@ export default function RegisterForm({
   return (
     <form
       onSubmit={handleSubmit((data) =>
-        onSubmit({ ...data, role: selectedRole })
+        onSubmit({ ...data, venueManager: selectedRole === "venueManager" })
       )}
       noValidate
     >

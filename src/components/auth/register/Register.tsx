@@ -1,3 +1,4 @@
+import { loginUser } from "@api/services/AuthServices";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@hooks/useAuth";
@@ -20,7 +21,15 @@ export default function Register({ onSuccess }: TRegisterProps) {
       const response = await registerUser({ userData });
       if (response) {
         toast.success("User registered successfully");
-        login(response.email, response.accessToken, response.name);
+        const loginResponse = await loginUser(
+          userData.email,
+          userData.password
+        );
+        login(
+          loginResponse.email,
+          loginResponse.accessToken,
+          loginResponse.name
+        );
         onSuccess();
         navigate("/");
       }
