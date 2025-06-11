@@ -22,11 +22,7 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Clear stored auth data and redirect to login
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-      localStorage.removeItem("userName");
-      window.location.href = "/login";
+      console.warn("Unauthorized. You may be logged out.");
     }
     return Promise.reject(error);
   }

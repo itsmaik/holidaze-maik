@@ -6,9 +6,10 @@ type TProtectedRouteProps = {
 };
 
 export default function ProtectedRoute({ children }: TProtectedRouteProps) {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const location = useLocation();
 
+  if (loading) return <p>Loading...</p>;
   if (!user) return <Navigate to='/' state={{ from: location }} />;
 
   return <>{children}</>;
